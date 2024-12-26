@@ -39,7 +39,6 @@ extern "C" {
  */
 enum Type {
     TYPE_FLOAT,
-    TYPE_INT,
     TYPE_STRING,
 };
 
@@ -51,7 +50,6 @@ typedef enum Type Type;
 struct Value {
     int type;
     union {
-        int64_t integer;
         double number;
         char * string;
     } value;
@@ -201,7 +199,6 @@ enum Type cJSON_GetTypeValue(const cJSON * j) {
     enum Type x = 0;
     if (NULL != j) {
         if (!strcmp(cJSON_GetStringValue(j), "float")) x = TYPE_FLOAT;
-        else if (!strcmp(cJSON_GetStringValue(j), "int")) x = TYPE_INT;
         else if (!strcmp(cJSON_GetStringValue(j), "string")) x = TYPE_STRING;
     }
     return x;
@@ -211,7 +208,6 @@ cJSON * cJSON_CreateType(const enum Type x) {
     cJSON * j = NULL;
     switch (x) {
         case TYPE_FLOAT: j = cJSON_CreateString("float"); break;
-        case TYPE_INT: j = cJSON_CreateString("int"); break;
         case TYPE_STRING: j = cJSON_CreateString("string"); break;
     }
     return j;
@@ -222,10 +218,6 @@ struct Value * cJSON_GetValueValue(const cJSON * j) {
     if (NULL != x) {
         memset(x, 0, sizeof(struct Value));
         if (cJSON_IsNumber(j)) {
-            x->type = cJSON_Number;
-            x->value.integer = cJSON_GetNumberValue(j);
-        }
-        else if (cJSON_IsNumber(j)) {
             x->type = cJSON_Number;
             x->value.number = cJSON_GetNumberValue(j);
         }
@@ -241,9 +233,6 @@ cJSON * cJSON_CreateValue(const struct Value * x) {
     cJSON * j = NULL;
     if (NULL != x) {
         if (cJSON_Number == x->type) {
-            j = cJSON_CreateNumber(x->value.integer);
-        }
-        else if (cJSON_Number == x->type) {
             j = cJSON_CreateNumber(x->value.number);
         }
         else if (cJSON_String == x->type) {
@@ -256,8 +245,6 @@ cJSON * cJSON_CreateValue(const struct Value * x) {
 void cJSON_DeleteValue(struct Value * x) {
     if (NULL != x) {
         if (cJSON_Number == x->type) {
-        }
-        else if (cJSON_Number == x->type) {
         }
         else if (cJSON_String == x->type) {
             cJSON_free(x->value.string);

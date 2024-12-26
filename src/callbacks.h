@@ -10,11 +10,5 @@
 // Returns an integer, which is the exit code of the service (0 for success, anything else for failure)
 typedef int (*MainCallback)(Service, Configuration);
 
-// The termination callback function
-// Takes in one argument:
-// - The signal that caused the termination
-// Returns an integer, which is the exit code of the cleanup process (0 for success, anything else for failure)
-typedef int (*TerminationCallback)(int);
-
 #endif // CALLBACKS_H
 
