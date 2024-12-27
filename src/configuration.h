@@ -16,22 +16,66 @@
  */
 
 typedef struct {
-    hashtable_t* numberValues;
-    hashtable_t* stringValues;
+    hashtable_t* float_values;
+    hashtable_t* string_values;
     hashtable_t* tunable;
     pthread_rwlock_t *rwlock;
     int64_t last_update;
-} ServiceConfiguration;
+} Service_configuration;
 
-ServiceConfiguration NewServiceConfiguration() {
-    ServiceConfiguration config;
-    config.numberValues = hashtable_create(16, false);
-    config.stringValues = hashtable_create(16, false);
+Service_configuration new_service_configuration(Service service) {
+    Service_configuration config;
+    config.float_values = hashtable_create(16, false);
+    config.string_values = hashtable_create(16, false);
     config.tunable = hashtable_create(16, false);
     config.rwlock = (pthread_rwlock_t *)malloc(sizeof(pthread_rwlock_t));
     pthread_rwlock_init(config.rwlock, NULL);
     config.last_update = 0;
+
+    Configuration *option = list_get_head(service.configuration);
+    while (option != NULL) {
+        switch (option->value->type) {
+            case TYPE_FLOAT:
+                hashtable_add(config.float_values, option->name, &option->value->value.number, sizeof(double));
+                break;
+            case TYPE_STRING:
+                hashtable_add(config.string_values, option->name, option->value->value.string, strlen(option->value->value.string));
+                break;
+        }
+        if (option->tunable) {
+            hashtable_add(config.tunable, option->name, NULL, 0);
+        }
+
+        option = list_get_next(service.configuration);        
+    }
+
     return config;
+}
+
+void set_number_value(Service_configuration *config, char *key, double value) {
+    pthread_rwlock_wrlock(config->rwlock);
+
+    // Check if this key is tunable
+    if (hashtable_has_key(config->tunable, key)) {
+        // If it is tunable, update the value
+        hashtable_remove(config->float_values, key);
+        hashtable_add(config->float_values, key, &value, sizeof(double));
+    }
+
+    pthread_rwlock_unlock(config->rwlock);
+}
+
+void set_string_value(Service_configuration *config, char *key, char *value) {
+    pthread_rwlock_wrlock(config->rwlock);
+
+    // Check if this key is tunable
+    if (hashtable_has_key(config->tunable, key)) {
+        // If it is tunable, update the value
+        hashtable_remove(config->string_values, key);
+        hashtable_add(config->string_values, key, value, strlen(value));
+    }
+
+    pthread_rwlock_unlock(config->rwlock);
 }
 
 #endif // CONFIGURATION_H

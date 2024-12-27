@@ -7,16 +7,10 @@
 #endif
 
 #include "tuning/tuning.pb-c.h"
-void   protobuf_msgs__tuning_state__parameter__float_parameter__init
-                     (ProtobufMsgs__TuningState__Parameter__FloatParameter         *message)
+void   protobuf_msgs__tuning_state__parameter__number_parameter__init
+                     (ProtobufMsgs__TuningState__Parameter__NumberParameter         *message)
 {
-  static const ProtobufMsgs__TuningState__Parameter__FloatParameter init_value = PROTOBUF_MSGS__TUNING_STATE__PARAMETER__FLOAT_PARAMETER__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__tuning_state__parameter__int_parameter__init
-                     (ProtobufMsgs__TuningState__Parameter__IntParameter         *message)
-{
-  static const ProtobufMsgs__TuningState__Parameter__IntParameter init_value = PROTOBUF_MSGS__TUNING_STATE__PARAMETER__INT_PARAMETER__INIT;
+  static const ProtobufMsgs__TuningState__Parameter__NumberParameter init_value = PROTOBUF_MSGS__TUNING_STATE__PARAMETER__NUMBER_PARAMETER__INIT;
   *message = init_value;
 }
 void   protobuf_msgs__tuning_state__parameter__string_parameter__init
@@ -76,7 +70,7 @@ void   protobuf_msgs__tuning_state__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__tuning_state__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__float_parameter__field_descriptors[2] =
+static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__number_parameter__field_descriptors[2] =
 {
   {
     "key",
@@ -84,7 +78,7 @@ static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__fl
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_STRING,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__TuningState__Parameter__FloatParameter, key),
+    offsetof(ProtobufMsgs__TuningState__Parameter__NumberParameter, key),
     NULL,
     &protobuf_c_empty_string,
     0,             /* flags */
@@ -96,86 +90,35 @@ static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__fl
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__TuningState__Parameter__FloatParameter, value),
+    offsetof(ProtobufMsgs__TuningState__Parameter__NumberParameter, value),
     NULL,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
-static const unsigned protobuf_msgs__tuning_state__parameter__float_parameter__field_indices_by_name[] = {
+static const unsigned protobuf_msgs__tuning_state__parameter__number_parameter__field_indices_by_name[] = {
   0,   /* field[0] = key */
   1,   /* field[1] = value */
 };
-static const ProtobufCIntRange protobuf_msgs__tuning_state__parameter__float_parameter__number_ranges[1 + 1] =
+static const ProtobufCIntRange protobuf_msgs__tuning_state__parameter__number_parameter__number_ranges[1 + 1] =
 {
   { 1, 0 },
   { 0, 2 }
 };
-const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__float_parameter__descriptor =
+const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__number_parameter__descriptor =
 {
   PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.TuningState.Parameter.FloatParameter",
-  "FloatParameter",
-  "ProtobufMsgs__TuningState__Parameter__FloatParameter",
+  "protobuf_msgs.TuningState.Parameter.NumberParameter",
+  "NumberParameter",
+  "ProtobufMsgs__TuningState__Parameter__NumberParameter",
   "protobuf_msgs",
-  sizeof(ProtobufMsgs__TuningState__Parameter__FloatParameter),
+  sizeof(ProtobufMsgs__TuningState__Parameter__NumberParameter),
   2,
-  protobuf_msgs__tuning_state__parameter__float_parameter__field_descriptors,
-  protobuf_msgs__tuning_state__parameter__float_parameter__field_indices_by_name,
-  1,  protobuf_msgs__tuning_state__parameter__float_parameter__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__tuning_state__parameter__float_parameter__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__int_parameter__field_descriptors[2] =
-{
-  {
-    "key",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_STRING,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__TuningState__Parameter__IntParameter, key),
-    NULL,
-    &protobuf_c_empty_string,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "value",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT64,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__TuningState__Parameter__IntParameter, value),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__tuning_state__parameter__int_parameter__field_indices_by_name[] = {
-  0,   /* field[0] = key */
-  1,   /* field[1] = value */
-};
-static const ProtobufCIntRange protobuf_msgs__tuning_state__parameter__int_parameter__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__int_parameter__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.TuningState.Parameter.IntParameter",
-  "IntParameter",
-  "ProtobufMsgs__TuningState__Parameter__IntParameter",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__TuningState__Parameter__IntParameter),
-  2,
-  protobuf_msgs__tuning_state__parameter__int_parameter__field_descriptors,
-  protobuf_msgs__tuning_state__parameter__int_parameter__field_indices_by_name,
-  1,  protobuf_msgs__tuning_state__parameter__int_parameter__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__tuning_state__parameter__int_parameter__init,
+  protobuf_msgs__tuning_state__parameter__number_parameter__field_descriptors,
+  protobuf_msgs__tuning_state__parameter__number_parameter__field_indices_by_name,
+  1,  protobuf_msgs__tuning_state__parameter__number_parameter__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__tuning_state__parameter__number_parameter__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__string_parameter__field_descriptors[2] =
@@ -229,28 +172,16 @@ const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__string_
   (ProtobufCMessageInit) protobuf_msgs__tuning_state__parameter__string_parameter__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__field_descriptors[3] =
+static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__field_descriptors[2] =
 {
   {
-    "float",
+    "number",
     1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(ProtobufMsgs__TuningState__Parameter, parameter_case),
-    offsetof(ProtobufMsgs__TuningState__Parameter, float_),
-    &protobuf_msgs__tuning_state__parameter__float_parameter__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "int",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProtobufMsgs__TuningState__Parameter, parameter_case),
-    offsetof(ProtobufMsgs__TuningState__Parameter, int_),
-    &protobuf_msgs__tuning_state__parameter__int_parameter__descriptor,
+    offsetof(ProtobufMsgs__TuningState__Parameter, number),
+    &protobuf_msgs__tuning_state__parameter__number_parameter__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -269,14 +200,14 @@ static const ProtobufCFieldDescriptor protobuf_msgs__tuning_state__parameter__fi
   },
 };
 static const unsigned protobuf_msgs__tuning_state__parameter__field_indices_by_name[] = {
-  0,   /* field[0] = float */
-  1,   /* field[1] = int */
-  2,   /* field[2] = string */
+  0,   /* field[0] = number */
+  1,   /* field[1] = string */
 };
-static const ProtobufCIntRange protobuf_msgs__tuning_state__parameter__number_ranges[1 + 1] =
+static const ProtobufCIntRange protobuf_msgs__tuning_state__parameter__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 3, 1 },
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__descriptor =
 {
@@ -286,10 +217,10 @@ const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__descrip
   "ProtobufMsgs__TuningState__Parameter",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__TuningState__Parameter),
-  3,
+  2,
   protobuf_msgs__tuning_state__parameter__field_descriptors,
   protobuf_msgs__tuning_state__parameter__field_indices_by_name,
-  1,  protobuf_msgs__tuning_state__parameter__number_ranges,
+  2,  protobuf_msgs__tuning_state__parameter__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__tuning_state__parameter__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

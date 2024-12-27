@@ -17,8 +17,7 @@ PROTOBUF_C__BEGIN_DECLS
 
 typedef struct _ProtobufMsgs__TuningState ProtobufMsgs__TuningState;
 typedef struct _ProtobufMsgs__TuningState__Parameter ProtobufMsgs__TuningState__Parameter;
-typedef struct _ProtobufMsgs__TuningState__Parameter__FloatParameter ProtobufMsgs__TuningState__Parameter__FloatParameter;
-typedef struct _ProtobufMsgs__TuningState__Parameter__IntParameter ProtobufMsgs__TuningState__Parameter__IntParameter;
+typedef struct _ProtobufMsgs__TuningState__Parameter__NumberParameter ProtobufMsgs__TuningState__Parameter__NumberParameter;
 typedef struct _ProtobufMsgs__TuningState__Parameter__StringParameter ProtobufMsgs__TuningState__Parameter__StringParameter;
 
 
@@ -31,25 +30,14 @@ typedef struct _ProtobufMsgs__TuningState__Parameter__StringParameter ProtobufMs
  * note: it may seem weird to not extract the key from the oneof, but this is so that the parser can easily determine the type of the parameter
  * extracting it to a separate field on the same level as oneof would make it ambiguous
  */
-struct  _ProtobufMsgs__TuningState__Parameter__FloatParameter
+struct  _ProtobufMsgs__TuningState__Parameter__NumberParameter
 {
   ProtobufCMessage base;
   char *key;
   float value;
 };
-#define PROTOBUF_MSGS__TUNING_STATE__PARAMETER__FLOAT_PARAMETER__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__tuning_state__parameter__float_parameter__descriptor) \
-    , (char *)protobuf_c_empty_string, 0 }
-
-
-struct  _ProtobufMsgs__TuningState__Parameter__IntParameter
-{
-  ProtobufCMessage base;
-  char *key;
-  int64_t value;
-};
-#define PROTOBUF_MSGS__TUNING_STATE__PARAMETER__INT_PARAMETER__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__tuning_state__parameter__int_parameter__descriptor) \
+#define PROTOBUF_MSGS__TUNING_STATE__PARAMETER__NUMBER_PARAMETER__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__tuning_state__parameter__number_parameter__descriptor) \
     , (char *)protobuf_c_empty_string, 0 }
 
 
@@ -66,8 +54,7 @@ struct  _ProtobufMsgs__TuningState__Parameter__StringParameter
 
 typedef enum {
   PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER__NOT_SET = 0,
-  PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER_FLOAT = 1,
-  PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER_INT = 2,
+  PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER_NUMBER = 1,
   PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER_STRING = 3
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER)
 } ProtobufMsgs__TuningState__Parameter__ParameterCase;
@@ -77,8 +64,7 @@ struct  _ProtobufMsgs__TuningState__Parameter
   ProtobufCMessage base;
   ProtobufMsgs__TuningState__Parameter__ParameterCase parameter_case;
   union {
-    ProtobufMsgs__TuningState__Parameter__FloatParameter *float_;
-    ProtobufMsgs__TuningState__Parameter__IntParameter *int_;
+    ProtobufMsgs__TuningState__Parameter__NumberParameter *number;
     ProtobufMsgs__TuningState__Parameter__StringParameter *string;
   };
 };
@@ -102,12 +88,9 @@ struct  _ProtobufMsgs__TuningState
     , 0, 0,NULL }
 
 
-/* ProtobufMsgs__TuningState__Parameter__FloatParameter methods */
-void   protobuf_msgs__tuning_state__parameter__float_parameter__init
-                     (ProtobufMsgs__TuningState__Parameter__FloatParameter         *message);
-/* ProtobufMsgs__TuningState__Parameter__IntParameter methods */
-void   protobuf_msgs__tuning_state__parameter__int_parameter__init
-                     (ProtobufMsgs__TuningState__Parameter__IntParameter         *message);
+/* ProtobufMsgs__TuningState__Parameter__NumberParameter methods */
+void   protobuf_msgs__tuning_state__parameter__number_parameter__init
+                     (ProtobufMsgs__TuningState__Parameter__NumberParameter         *message);
 /* ProtobufMsgs__TuningState__Parameter__StringParameter methods */
 void   protobuf_msgs__tuning_state__parameter__string_parameter__init
                      (ProtobufMsgs__TuningState__Parameter__StringParameter         *message);
@@ -135,11 +118,8 @@ void   protobuf_msgs__tuning_state__free_unpacked
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
-typedef void (*ProtobufMsgs__TuningState__Parameter__FloatParameter_Closure)
-                 (const ProtobufMsgs__TuningState__Parameter__FloatParameter *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__TuningState__Parameter__IntParameter_Closure)
-                 (const ProtobufMsgs__TuningState__Parameter__IntParameter *message,
+typedef void (*ProtobufMsgs__TuningState__Parameter__NumberParameter_Closure)
+                 (const ProtobufMsgs__TuningState__Parameter__NumberParameter *message,
                   void *closure_data);
 typedef void (*ProtobufMsgs__TuningState__Parameter__StringParameter_Closure)
                  (const ProtobufMsgs__TuningState__Parameter__StringParameter *message,
@@ -158,8 +138,7 @@ typedef void (*ProtobufMsgs__TuningState_Closure)
 
 extern const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__float_parameter__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__int_parameter__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__number_parameter__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__tuning_state__parameter__string_parameter__descriptor;
 
 PROTOBUF_C__END_DECLS
