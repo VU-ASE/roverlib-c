@@ -78,4 +78,35 @@ void set_string_value(Service_configuration *config, char *key, char *value) {
     pthread_rwlock_unlock(config->rwlock);
 }
 
+//
+// Methods to be used by the user program
+// nb: we force the user to be very explicit about the type of the configuration value they want to fetch, to avoid runtime errors
+//
+
+// Gets the float value of the configuration option with the given name, returns NULL if the option does not exist or does not exist for this type
+// Reading is NOT thread-safe, but we accept the risks because we assume that the user program will read the configuration values repeatedly
+// If you want to read the configuration values with concurrency-safety, use the _safe methods
+float* get_float_value(Service_configuration *config, char *key) {
+    return hashtable_lookup(config->float_values, key);
+}
+float* get_float_value_safe(Service_configuration *config, char *key) {
+    pthread_rwlock_rdlock(config->rwlock);
+    float *value = hashtable_lookup(config->float_values, key);
+    pthread_rwlock_unlock(config->rwlock);
+    return value;
+}
+
+// Gets the string value of the configuration option with the given name, returns NULL if the option does not exist or does not exist for this type
+// Reading is NOT thread-safe, but we accept the risks because we assume that the user program will read the configuration values repeatedly
+// If you want to read the configuration values with concurrency-safety, use the _safe methods
+char* get_string_value(Service_configuration *config, char *key) {
+    return hashtable_lookup(config->string_values, key);
+}
+char* get_string_value_safe(Service_configuration *config, char *key) {
+    pthread_rwlock_rdlock(config->rwlock);
+    char *value = hashtable_lookup(config->string_values, key);
+    pthread_rwlock_unlock(config->rwlock);
+    return value;
+}
+
 #endif // CONFIGURATION_H

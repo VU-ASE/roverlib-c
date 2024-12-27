@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <zmq.h>
+#include <stdbool.h>
+
 
 #define MAX_MESSAGE_SIZE 4096
 
@@ -32,12 +34,12 @@ void *configuration_thread(void *arg) {
     // Initialize ZeroMQ context and REQ socket to fetch tuning updates on
     void *context = zmq_ctx_new();
     if (context == NULL) {
-        printf("Failed to create ZMQ context\n");
+        printf("Failed to create ZMQ context: %d\n", zmq_errno());
         return NULL;
     }
     void *socket = zmq_socket(context, ZMQ_REQ);
     if (socket == NULL) {
-        printf("Failed to create ZMQ socket\n");
+        printf("Failed to create ZMQ socket %d\n", zmq_errno());
         zmq_ctx_destroy(context);
         return NULL;
     }
@@ -45,7 +47,7 @@ void *configuration_thread(void *arg) {
     const char *address = args->service.tuning->address;
     int res = zmq_connect(socket, address);
     if (res != 0) {
-        printf("Failed to connect to ZMQ socket at %s\n", address);
+        printf("Failed to connect to ZMQ socket at %s: %d/%d\n", address, res, zmq_errno());
         zmq_close(socket); 
         zmq_ctx_destroy(context);
         return NULL;
@@ -54,7 +56,7 @@ void *configuration_thread(void *arg) {
     // Subscribe to all messages
     res = zmq_setsockopt(socket, ZMQ_SUBSCRIBE, "", 0);
     if (res != 0) {
-        printf("Failed to subscribe to all messages on ZMQ socket\n");
+        printf("Failed to subscribe to all messages on ZMQ socket: %d/%d\n", res, zmq_errno());
         zmq_close(socket); 
         zmq_ctx_destroy(context);
         return NULL;
@@ -141,7 +143,8 @@ int run(Main_callback main) {
   // Set up a thread to listen for configuration updates
   // (the user program can fetch the latest value from the configuration object)
   //
-  if (service->tuning != NULL && service->tuning->enabled) {
+  if (service->tuning != NULL && *service->tuning->enabled == true) {
+    printf("Tuning enabled for this service, starting configuration thread\n");
     pthread_t thread;
     Configuration_thread_args args;
     args.service = *service;
@@ -154,7 +157,7 @@ int run(Main_callback main) {
     }
     printf("Configuration thread started\n");
 
-    pthread_join(thread, NULL);
+  // pthread_join(thread, NULL);
   } else {
     printf("Tuning was not enabled for this service, so no configuration thread was started\n");
   }

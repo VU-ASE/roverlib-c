@@ -2,11 +2,14 @@
     "name": "imaging",
     "version": "1.0.1",
     "inputs": [],
-    "outputs": [{
-        "name": "path",
-        "address": "tcp://*:9191"
-    }],
-    "configuration": [{
+    "outputs": [
+        {
+            "name": "path",
+            "address": "tcp://*:9191"
+        }
+    ],
+    "configuration": [
+        {
             "name": "threshold-value",
             "type": "int",
             "tunable": true,
@@ -39,6 +42,6 @@
     ],
     "tuning": {
         "enabled": false,
-        "address": "tcp://unix:8829"
+        "address": "tcp://localhost:8829"
     }
 }
