@@ -30,12 +30,12 @@ if(NOT ZMQ_INCLUDE_DIR OR NOT ZMQ_LIBRARY)
 endif()
 
 # Dependencies
-add_subdirectory(deps/c-list)         # Build c-list static library
-add_subdirectory(deps/c-hashtable)   # Build c-hashtable static library
+add_subdirectory(dependencies/c-list)         # Build c-list static library
+add_subdirectory(dependencies/c-hashtable)   # Build c-hashtable static library
 
 # Include directories
 include_directories(include)
-include_directories(deps/c-list/include deps/c-hashtable/include)
+include_directories(dependencies/c-list/include dependencies/c-hashtable/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/rovercom)
 
 # Add include paths for public headers
@@ -47,14 +47,40 @@ file(GLOB_RECURSE SOURCES src/*.c)
 # Add shared library
 add_library(roverlib-c SHARED ${SOURCES})
 
+# Build c-list
+execute_process(
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/c-list/build
+)
+execute_process(
+    COMMAND ${CMAKE_COMMAND} ..
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/c-list/build
+)
+execute_process(
+    COMMAND make
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/c-list/build
+)
+
+# Build c-hashtable
+execute_process(
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/c-hashtable/build
+)
+execute_process(
+    COMMAND ${CMAKE_COMMAND} ..
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/c-hashtable/build
+)
+execute_process(
+    COMMAND make
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/c-hashtable/build
+)
+
 # Link against dependencies
 target_link_libraries(roverlib-c
     ${CJSON_LIBRARY}
     pthread
     protobuf-c
     zmq
-    ${CMAKE_CURRENT_SOURCE_DIR}/deps/c-list/build/liblist.a
-    ${CMAKE_CURRENT_SOURCE_DIR}/deps/c-hashtable/build/libhashtable.a
+    ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/c-list/build/liblist.a
+    ${CMAKE_CURRENT_SOURCE_DIR}/dependencies/c-hashtable/build/libhashtable.a
 )
 
 # Installation
