@@ -29,7 +29,7 @@ Service_configuration new_service_configuration(Service service) {
     return config;
 }
 
-void set_number_value(Service_configuration *config, char *key, double value) {
+void set_float_value(Service_configuration *config, char *key, double value) {
     pthread_rwlock_wrlock(config->rwlock);
 
     // Check if this key is tunable
@@ -63,12 +63,12 @@ void set_string_value(Service_configuration *config, char *key, char *value) {
 // Gets the float value of the configuration option with the given name, returns NULL if the option does not exist or does not exist for this type
 // Reading is NOT thread-safe, but we accept the risks because we assume that the user program will read the configuration values repeatedly
 // If you want to read the configuration values with concurrency-safety, use the _safe methods
-float* get_float_value(Service_configuration *config, char *key) {
+double* get_float_value(Service_configuration *config, char *key) {
     return hashtable_lookup(config->float_values, key);
 }
-float* get_float_value_safe(Service_configuration *config, char *key) {
+double* get_float_value_safe(Service_configuration *config, char *key) {
     pthread_rwlock_rdlock(config->rwlock);
-    float *value = hashtable_lookup(config->float_values, key);
+    double *value = hashtable_lookup(config->float_values, key);
     pthread_rwlock_unlock(config->rwlock);
     return value;
 }

@@ -27,7 +27,7 @@ typedef struct {
 
 Service_configuration new_service_configuration(Service service);
 
-void set_number_value(Service_configuration *config, char *key, double value);
+void set_float_value(Service_configuration *config, char *key, double value);
 
 void set_string_value(Service_configuration *config, char *key, char *value);
 
@@ -39,8 +39,8 @@ void set_string_value(Service_configuration *config, char *key, char *value);
 // Gets the float value of the configuration option with the given name, returns NULL if the option does not exist or does not exist for this type
 // Reading is NOT thread-safe, but we accept the risks because we assume that the user program will read the configuration values repeatedly
 // If you want to read the configuration values with concurrency-safety, use the _safe methods
-float* get_float_value(Service_configuration *config, char *key);
-float* get_float_value_safe(Service_configuration *config, char *key);
+double* get_float_value(Service_configuration *config, char *key);
+double* get_float_value_safe(Service_configuration *config, char *key);
 
 // Gets the string value of the configuration option with the given name, returns NULL if the option does not exist or does not exist for this type
 // Reading is NOT thread-safe, but we accept the risks because we assume that the user program will read the configuration values repeatedly

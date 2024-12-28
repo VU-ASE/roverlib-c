@@ -76,7 +76,7 @@ void *configuration_thread(void *arg) {
             ProtobufMsgs__TuningState__Parameter *param = tuning_state->dynamicparameters[i];
 
             if (param->parameter_case == PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER_NUMBER) {
-                set_number_value(args->config, param->number->key, param->number->value);
+                set_float_value(args->config, param->number->key, param->number->value);
             } else if (param->parameter_case == PROTOBUF_MSGS__TUNING_STATE__PARAMETER__PARAMETER_STRING) {
                 set_string_value(args->config, param->string->key, param->string->value);
             }
