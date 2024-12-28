@@ -53,3 +53,4 @@ dkms.conf
 bin
 build
 .DS_Store
+boot.json
