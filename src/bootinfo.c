@@ -3,7 +3,7 @@
 enum Type cJSON_GetTypeValue(const cJSON * j) {
     enum Type x = 0;
     if (NULL != j) {
-        if (!strcmp(cJSON_GetStringValue(j), "float")) x = TYPE_FLOAT;
+        if (!strcmp(cJSON_GetStringValue(j), "number")) x = TYPE_NUMBER;
         else if (!strcmp(cJSON_GetStringValue(j), "string")) x = TYPE_STRING;
     }
     return x;
@@ -12,7 +12,7 @@ enum Type cJSON_GetTypeValue(const cJSON * j) {
 cJSON * cJSON_CreateType(const enum Type x) {
     cJSON * j = NULL;
     switch (x) {
-        case TYPE_FLOAT: j = cJSON_CreateString("float"); break;
+        case TYPE_NUMBER: j = cJSON_CreateString("number"); break;
         case TYPE_STRING: j = cJSON_CreateString("string"); break;
     }
     return j;

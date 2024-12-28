@@ -12,7 +12,7 @@ Service_configuration new_service_configuration(Service service) {
     Configuration *option = list_get_head(service.configuration);
     while (option != NULL) {
         switch (option->value->type) {
-            case TYPE_FLOAT:
+            case TYPE_NUMBER:
                 hashtable_add(config.float_values, option->name, &option->value->value.number, sizeof(double));
                 break;
             case TYPE_STRING:

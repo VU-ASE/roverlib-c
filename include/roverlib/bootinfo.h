@@ -38,14 +38,14 @@ extern "C" {
  * The type of this configuration option
  */
 enum Type {
-    TYPE_FLOAT,
+    TYPE_NUMBER,
     TYPE_STRING,
 };
 
 typedef enum Type Type;
 
 /**
- * The value of this configuration option, which can be a string, integer, or float
+ * The value of this configuration option, which can be a string or float
  */
 struct Value {
     int type;
@@ -71,7 +71,7 @@ struct Configuration {
      */
     enum Type * type;
     /**
-     * The value of this configuration option, which can be a string, integer, or float
+     * The value of this configuration option, which can be a string or float
      */
     struct Value * value;
 };
@@ -200,4 +200,3 @@ void cJSON_DeleteService(struct Service * x);
 #endif
 
 #endif /* __STDOUT__ */
-
