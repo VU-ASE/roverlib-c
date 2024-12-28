@@ -1,26 +1,4 @@
-#ifndef RUN_H
-#define RUN_H
-
-#include "../include/rovercom/tuning/tuning.pb-c.h"
-#include <stdio.h>
-#include <stdio.h>
-#include "bootinfo.h"
-#include "callbacks.h"
-#include <stdlib.h>
-#include "configuration.h"
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <zmq.h>
-#include <stdbool.h>
-
-
-#define MAX_MESSAGE_SIZE 4096
-
-typedef struct {
-    Service service;
-    Service_configuration *config;
-} Configuration_thread_args; 
+#include "../include/roverlib/run.h"
 
 // Thread that runs to update the service configuration that is shared with the user program
 void *configuration_thread(void *arg) {
@@ -165,5 +143,3 @@ int run(Main_callback main) {
   // Run the user program
   return main(*service, &config);
 }
-
-#endif // RUN_H

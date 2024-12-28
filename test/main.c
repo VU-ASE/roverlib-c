@@ -1,11 +1,4 @@
-#include "../include/rovercom/control/control.pb-c.h"
-#include <stdio.h>
-#include <stdio.h>
-#include "bootinfo.h"
-#include "callbacks.h"
-#include "run.h"
-#include "configuration.h"
-#include "streams.h"
+#include <roverlib.h>
 
 int test_main(Service service, Service_configuration *configuration) {
   printf("==== Initializing test main function =====\n");

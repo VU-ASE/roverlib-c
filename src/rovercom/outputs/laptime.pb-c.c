@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/laptime.pb-c.h"
+#include "rovercom/outputs/laptime.pb-c.h"
 void   protobuf_msgs__lap_time_output__init
                      (ProtobufMsgs__LapTimeOutput         *message)
 {

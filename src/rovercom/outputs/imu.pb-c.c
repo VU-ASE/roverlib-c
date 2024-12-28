@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/imu.pb-c.h"
+#include "rovercom/outputs/imu.pb-c.h"
 void   protobuf_msgs__imu_sensor_output__vector__init
                      (ProtobufMsgs__ImuSensorOutput__Vector         *message)
 {

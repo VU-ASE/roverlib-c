@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/controller.pb-c.h"
+#include "rovercom/outputs/controller.pb-c.h"
 void   protobuf_msgs__controller_output__init
                      (ProtobufMsgs__ControllerOutput         *message)
 {

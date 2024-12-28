@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/distance.pb-c.h"
+#include "rovercom/outputs/distance.pb-c.h"
 void   protobuf_msgs__distance_sensor_output__init
                      (ProtobufMsgs__DistanceSensorOutput         *message)
 {

@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/lux.pb-c.h"
+#include "rovercom/outputs/lux.pb-c.h"
 void   protobuf_msgs__lux_sensor_output__init
                      (ProtobufMsgs__LuxSensorOutput         *message)
 {

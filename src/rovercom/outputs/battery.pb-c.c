@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/battery.pb-c.h"
+#include "rovercom/outputs/battery.pb-c.h"
 void   protobuf_msgs__battery_sensor_output__init
                      (ProtobufMsgs__BatterySensorOutput         *message)
 {

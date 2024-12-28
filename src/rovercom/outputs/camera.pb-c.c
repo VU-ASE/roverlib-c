@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/camera.pb-c.h"
+#include "rovercom/outputs/camera.pb-c.h"
 void   protobuf_msgs__canvas_object__point__init
                      (ProtobufMsgs__CanvasObject__Point         *message)
 {

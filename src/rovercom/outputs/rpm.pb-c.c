@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/rpm.pb-c.h"
+#include "rovercom/outputs/rpm.pb-c.h"
 void   protobuf_msgs__rpm_sensor_output__init
                      (ProtobufMsgs__RpmSensorOutput         *message)
 {

@@ -1,5 +1,5 @@
 # Makefile in accordance with the docs on git management (to use in combination with meta)
-.PHONY: build start clean test debug
+.PHONY: build start clean test debug deps lib
 
 BUILD_DIR=bin/
 BINARY_NAME=roverlib
@@ -15,7 +15,6 @@ debug:
 build: lint
 	@echo "building ${BINARY_NAME}"
 	@mkdir -p $(BUILD_DIR)
-	@echo ${find ./include/rovercom -name '*.c'}
 	gcc -I/usr/include/cjson -g -o $(BUILD_DIR)$(BINARY_NAME) -I./include/rovercom ${SRCS} src/main.c -lcjson -L/usr/local/lib -llist -lhashtable -lzmq -lpthread -lprotobuf-c
 
 #
@@ -32,3 +31,15 @@ clean:
 
 test: lint
 	exit 0
+
+
+# build dependencies to static libraries
+deps:
+	@echo "Building dependencies"
+	@cd deps/c-list && mkdir -p build && cd build && cmake .. && make
+	@cd deps/c-hashtable && mkdir -p build && cd build && cmake .. && make
+
+# build library
+lib:
+	@echo "Building library"
+	@cd include/rovercom && mkdir -p build && cd build && cmake .. && make

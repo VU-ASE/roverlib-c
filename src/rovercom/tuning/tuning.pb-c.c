@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "tuning/tuning.pb-c.h"
+#include "rovercom/tuning/tuning.pb-c.h"
 void   protobuf_msgs__tuning_state__parameter__number_parameter__init
                      (ProtobufMsgs__TuningState__Parameter__NumberParameter         *message)
 {

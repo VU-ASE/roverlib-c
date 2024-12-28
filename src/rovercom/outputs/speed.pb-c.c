@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "outputs/speed.pb-c.h"
+#include "rovercom/outputs/speed.pb-c.h"
 void   protobuf_msgs__speed_sensor_output__init
                      (ProtobufMsgs__SpeedSensorOutput         *message)
 {
