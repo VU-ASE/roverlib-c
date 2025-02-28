@@ -2,5 +2,5 @@
 .PHONY: test
 
 test: 
-	@echo "No tests to run"
+	@echo "TODO: testing"
 	@exit 0

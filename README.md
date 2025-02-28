@@ -18,6 +18,7 @@ This will be installed when you use the provided devcontainer. Have a look at th
 Clone the repo first, then enter its directory. 
 ```bash
 mkdir build
+cd build
 cmake ..
 make 
 sudo make install
