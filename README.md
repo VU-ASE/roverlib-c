@@ -1,9 +1,9 @@
 # roverlib-c
-Building a service that runs on the rover? Then you'll need the roverlib. This is the variant for C
 
-**WIP**. Full docs on ase website
+Building a service that runs on the rover? Then you'll need the roverlib. This is the variant for C.
 
 # Requirements
+
 Before installing/using the roverlib, you need to have the following installed:
 
 - libprotobuf-c-dev
@@ -83,8 +83,6 @@ Some code is generated using quicktype, which relies on joelguittet/c-list and j
 These libraries are redistributed in this repository and modified slightly to allow for compilation to static libraries which are included in the roverlib.so file, so that there is no need to install them manually. 
 
 # Maintenance 
-
-**WIP**
 
 This library contains some auto-generated code. If the underlying specs are updated, you can do the following to generate again:
 

@@ -54,3 +54,5 @@ bin
 build
 .DS_Store
 boot.json
+!test/boot.json
+test/main
