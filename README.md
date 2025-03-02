@@ -101,3 +101,18 @@ Make sure to split up the generated file, put the declarations in `include/booti
 **rovercom**:
 copy the generated rovercom package from https://github.com/VU-ASE/rovercom/tree/main/packages/c/gen. You only need `output` and `tuning`. Make sure to put all header files in the `include/rovercom` directory (keep the file structure!) and all c source files in the `src/rovercom` directory (keep the file structure!)
 
+# Testing and building from source
+
+Sometimes you might want to build a program with the "raw" source files directly, for example to build with debug symbols. This is very easy using the devcontainer. Open vscode in the container and enter the *test* directory, you can then build and simulate roverd by injecting a bootspec. An example bootspec and the full spec can be found [here](https://github.com/VU-ASE/rover/tree/main/spec/service-boot).
+
+Note that you will need to install c-hashtable and c-list manually now. This can be done from both folders in the */dependencies* folder, like so:
+
+```bash
+# Example for c-hashtable, just switch name for c-list
+cd dependencies/c-hashtable
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```

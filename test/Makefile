@@ -20,3 +20,7 @@ clean:
 start: build
 	@echo "Starting program with injected bootspec"
 	@ASE_SERVICE=$$(cat boot.json) && export ASE_SERVICE && echo "Starting program" && ./main
+
+debug: build
+	@echo "Starting program in debug mode with injected bootspec"
+	@ASE_SERVICE=$$(cat boot.json) && export ASE_SERVICE && echo "Starting program" && gdb ./main

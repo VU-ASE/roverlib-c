@@ -18,6 +18,7 @@ RUN apt-get update && \
     libprotobuf-c-dev \
     libcjson-dev \
     cmake \
+    gdb \
     && rm -rf /var/lib/apt/lists/*
 
 # Include shared objects in the library path

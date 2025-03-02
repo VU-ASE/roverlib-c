@@ -94,15 +94,18 @@ int init_write_stream(write_stream *stream) {
 
     void *context = zmq_ctx_new();
     if (context == NULL) {
+        printf("Failed to create ZMQ context\n");
         return 1;
     }
     void *socket = zmq_socket(context, ZMQ_PUB);
     if (socket == NULL) {
+        printf("Failed to create ZMQ socket\n");
         zmq_ctx_destroy(context);
         return 1;
     }
     int res = zmq_bind(socket, stream->address);
     if (res != 0) {
+        printf("Failed to bind ZMQ socket\n");
         zmq_close(socket);
         zmq_ctx_destroy(context);
         return 1;
@@ -155,6 +158,7 @@ int write_bytes(write_stream *stream, void *buffer, int size) {
     if (stream->socket == NULL) {
         int res = init_write_stream(stream);
         if (res != 0) {
+            printf("Failed to initialize write stream\n");
             return -1;
         }
     }
