@@ -37,7 +37,7 @@ int test_main(Service service, Service_configuration *configuration) {
     msg.sensor_output_case = PROTOBUF_MSGS__SENSOR_OUTPUT__SENSOR_OUTPUT_RPM_OUPUT;
 
     int res = write_pb(stream, &msg);
-    if (res != 0) {
+    if (res < 0) {
       printf("Could not write\n");
       return 1l;
     }
