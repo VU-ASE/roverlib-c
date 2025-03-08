@@ -23,3 +23,13 @@ RUN apt-get update && \
 
 # Include shared objects in the library path
 ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+
+
+# Install two external dependencies: c-hashtable and c-list
+WORKDIR /opt/
+RUN git clone https://github.com/joelguittet/c-list.git
+RUN cd /opt/c-list && mkdir build && cd build && cmake .. && make install
+
+RUN git clone https://github.com/joelguittet/c-hashtable.git
+RUN cd /opt/c-hashtable && mkdir build && cd build && cmake .. && make install
+
