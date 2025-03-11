@@ -56,3 +56,4 @@ build
 boot.json
 !test/boot.json
 test/main
+main
