@@ -28,20 +28,20 @@ read_stream* get_read_stream(Service* service, char* dependency_name, char* stre
     while (input != NULL) {
         if (strcmp(input->service, dependency_name) == 0) {
             // Check if this input has a stream with the given name
-            struct Stream *stream = list_get_head(input->streams);
-            while (stream != NULL) {
-                if (strcmp(stream->name, stream_name) == 0) {
+            struct Stream *orig_stream = list_get_head(input->streams);
+            while (orig_stream != NULL) {
+                if (strcmp(orig_stream->name, stream_name) == 0) {
                     // Malloc a new stream
                     read_stream *stream = (read_stream *)malloc(sizeof(read_stream));
                     if (stream == NULL) {
                         return NULL;
                     }
-                    stream->address = stream->address;
+                    stream->address = orig_stream->address;
                     stream->socket = NULL;
                     stream->bytes = 0;
                     return stream;
                 }
-                stream = list_get_next(input->streams);
+                orig_stream = list_get_next(input->streams);
             }
         }
         input = list_get_next(service->inputs);
@@ -140,15 +140,42 @@ int read_bytes(read_stream *stream, void *buffer, int size) {
 // returns the message, or NULL on error
 // nb: it is the caller's responsibility to free the message
 ProtobufMsgs__SensorOutput* read_pb(read_stream* stream) {
-    char buf[4096];
-
-    int len = read_bytes(stream, buf, sizeof(buf));
-    if (len < 0) {
+    zmq_msg_t msg;
+    // Initialize a message container
+    if (zmq_msg_init(&msg) != 0) {
         return NULL;
     }
 
-    // Unpack the message
-    ProtobufMsgs__SensorOutput *message = protobuf_msgs__sensor_output__unpack(NULL, len, buf);
+    // Receive the message into the zmq_msg_t container
+    if (stream->socket == NULL) {
+        int res = init_read_stream(stream);
+        if (res != 0) {
+            return NULL;
+        }
+    }
+    
+    int len = zmq_msg_recv(&msg, stream->socket, 0);
+    if (len < 0) {
+        zmq_msg_close(&msg);
+        return NULL;
+    }
+    stream->bytes += len;
+    // Get the size of the received message
+    size_t msg_size = zmq_msg_size(&msg);
+    // Dynamically allocate a buffer large enough to hold the message
+    uint8_t *buf = malloc(msg_size);
+    if (!buf) {
+        zmq_msg_close(&msg);
+        return NULL;
+    }
+    // Copy the message data into our buffer
+    memcpy(buf, zmq_msg_data(&msg), msg_size);
+    zmq_msg_close(&msg);
+
+    // Unpack the Protobuf message from the buffer
+    ProtobufMsgs__SensorOutput *message = protobuf_msgs__sensor_output__unpack(NULL, msg_size, buf);
+    free(buf);
+
     return message;
 }
 
