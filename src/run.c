@@ -15,7 +15,7 @@ void *configuration_thread(void *arg) {
         printf("Failed to create ZMQ context: %d\n", zmq_errno());
         return NULL;
     }
-    void *socket = zmq_socket(context, ZMQ_REQ);
+    void *socket = zmq_socket(context, ZMQ_SUB);
     if (socket == NULL) {
         printf("Failed to create ZMQ socket %d\n", zmq_errno());
         zmq_ctx_destroy(context);
