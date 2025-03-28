@@ -21,4 +21,7 @@ roverctl service init c --name c-example-service --source github.com/author/exam
 
 Read more about using `roverctl` to initialize services [here](https://ase.vu.nl/docs/framework/Software/rover/roverctl/usage#initialize-a-service).
 
+## Attributions
 
+Some code is generated using quicktype, which relies on joelguittet/c-list and joelguittet/c-hashtable. 
+These libraries are redistributed in this repository and modified slightly to allow for compilation to static libraries.
