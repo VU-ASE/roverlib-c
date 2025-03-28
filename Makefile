@@ -1,3 +1,4 @@
+# Find more information at ase.vu.nl/docs/framework/glossary/makefiles
 .PHONY: build start clean
 
 #
