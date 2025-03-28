@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/VU-ASE/roverlib-c/compare/v1.0.0...v1.0.1) (2025-03-28)
+
+
+### Bug Fixes
+
+* change socket type REQ -&gt; SUB ([bd29b7d](https://github.com/VU-ASE/roverlib-c/commit/bd29b7de0c9ac0ca4cbe49823efbb6e9cc846ae1))
+* hash table initialization ([4776bf2](https://github.com/VU-ASE/roverlib-c/commit/4776bf23c372a1549f213c91a2543cc1b8513363))
+
 ## 1.0.0 (2025-03-26)
 
 
