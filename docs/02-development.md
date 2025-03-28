@@ -1,6 +1,5 @@
 # For Maintainers
 
-
 ## Requirements
 
 Before using the roverlib, you need to have the following installed:
@@ -35,11 +34,6 @@ cmake ..
 make
 sudo make install
 ```
-
-# Attributions
-
-Some code is generated using quicktype, which relies on joelguittet/c-list and joelguittet/c-hashtable. 
-These libraries are redistributed in this repository and modified slightly to allow for compilation to static libraries.
 
 # Maintenance 
 
