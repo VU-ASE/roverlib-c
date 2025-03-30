@@ -6,7 +6,7 @@
 #define PROTOBUF_C__NO_DEPRECATED
 #endif
 
-#include "rovercom/outputs/wrapper.pb-c.h"
+#include "outputs/wrapper.pb-c.h"
 void   protobuf_msgs__sensor_output__init
                      (ProtobufMsgs__SensorOutput         *message)
 {
@@ -52,7 +52,7 @@ void   protobuf_msgs__sensor_output__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__sensor_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descriptors[12] =
+static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descriptors[22] =
 {
   {
     "sensorId",
@@ -198,14 +198,144 @@ static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descri
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "genericIntScalar",
+    13,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, genericintscalar),
+    &protobuf_msgs__generic_int_scalar__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "genericFloatScalar",
+    14,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, genericfloatscalar),
+    &protobuf_msgs__generic_float_scalar__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "genericBoolScalar",
+    15,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, genericboolscalar),
+    &protobuf_msgs__generic_bool_scalar__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "genericStringScalar",
+    16,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, genericstringscalar),
+    &protobuf_msgs__generic_string_scalar__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "genericIntArray",
+    17,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, genericintarray),
+    &protobuf_msgs__generic_int_array__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "genericFloatArray",
+    18,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, genericfloatarray),
+    &protobuf_msgs__generic_float_array__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "genericBoolArray",
+    19,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, genericboolarray),
+    &protobuf_msgs__generic_bool_array__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "genericStringArray",
+    20,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, genericstringarray),
+    &protobuf_msgs__generic_string_array__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "lidarOutput",
+    21,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, lidaroutput),
+    &protobuf_msgs__lidar_sensor_output__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "energyOutput",
+    22,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
+    offsetof(ProtobufMsgs__SensorOutput, energyoutput),
+    &protobuf_msgs__energy_sensor_output__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned protobuf_msgs__sensor_output__field_indices_by_name[] = {
   8,   /* field[8] = batteryOutput */
   3,   /* field[3] = cameraOutput */
   6,   /* field[6] = controllerOutput */
   4,   /* field[4] = distanceOutput */
+  21,   /* field[21] = energyOutput */
+  18,   /* field[18] = genericBoolArray */
+  14,   /* field[14] = genericBoolScalar */
+  17,   /* field[17] = genericFloatArray */
+  13,   /* field[13] = genericFloatScalar */
+  16,   /* field[16] = genericIntArray */
+  12,   /* field[12] = genericIntScalar */
+  19,   /* field[19] = genericStringArray */
+  15,   /* field[15] = genericStringScalar */
   7,   /* field[7] = imuOutput */
   11,   /* field[11] = laptimeOutput */
+  20,   /* field[20] = lidarOutput */
   10,   /* field[10] = luxOutput */
   9,   /* field[9] = rpmOuput */
   0,   /* field[0] = sensorId */
@@ -216,7 +346,7 @@ static const unsigned protobuf_msgs__sensor_output__field_indices_by_name[] = {
 static const ProtobufCIntRange protobuf_msgs__sensor_output__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 12 }
+  { 0, 22 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__sensor_output__descriptor =
 {
@@ -226,7 +356,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__sensor_output__descriptor =
   "ProtobufMsgs__SensorOutput",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__SensorOutput),
-  12,
+  22,
   protobuf_msgs__sensor_output__field_descriptors,
   protobuf_msgs__sensor_output__field_indices_by_name,
   1,  protobuf_msgs__sensor_output__number_ranges,
