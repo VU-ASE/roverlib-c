@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.4](https://github.com/VU-ASE/roverlib-c/compare/v1.0.3...v1.0.4) (2025-03-30)
+
+
+### Bug Fixes
+
+* changed relative links to urls (max) ([d87e4cc](https://github.com/VU-ASE/roverlib-c/commit/d87e4cc523c86924a63b2cf242caede9ffe0dcf3))
+* paths in include statements are now correct ([cca8124](https://github.com/VU-ASE/roverlib-c/commit/cca8124326b4f011780baccce8f06232e4539a39))
+
 ## [1.0.3](https://github.com/VU-ASE/roverlib-c/compare/v1.0.2...v1.0.3) (2025-03-30)
 
 
