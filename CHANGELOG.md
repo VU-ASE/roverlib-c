@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/VU-ASE/roverlib-c/compare/v1.0.2...v1.0.3) (2025-03-30)
+
+
+### Bug Fixes
+
+* wrapper files missing lidar, generic and current ([666c487](https://github.com/VU-ASE/roverlib-c/commit/666c4877c52d7e82631c477fe0a47e4e860ac2d4))
+
 ## [1.0.2](https://github.com/VU-ASE/roverlib-c/compare/v1.0.1...v1.0.2) (2025-03-29)
 
 
