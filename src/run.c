@@ -121,7 +121,7 @@ int run(Main_callback main) {
   // Set up a thread to listen for configuration updates
   // (the user program can fetch the latest value from the configuration object)
   //
-  if (service->tuning != NULL && *service->tuning->enabled == true) {
+  if (service->tuning != NULL && service->tuning->enabled != NULL && *service->tuning->enabled == true) {
     printf("Tuning enabled for this service, starting configuration thread\n");
     pthread_t thread;
     Configuration_thread_args args;

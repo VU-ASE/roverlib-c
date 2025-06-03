@@ -1,5 +1,7 @@
 #include "unity.h"
 #include "../include/roverlib/bootinfo.h"
+#include "../include/roverlib/configuration.h"
+#include "../include/roverlib/run.h"
 
 
 
@@ -168,8 +170,217 @@ static void inject_invalid_service(const char *variant) {
 }
 
 
+
+// -------- VALID BOOTSPEC TESTS --------
+
+
+// -------- Test 1: A valid service definition with no operations returns 0
+
+// helper function that does nothing
+static int main_no_operation(struct Service s, Service_configuration *config) {
+    (void)s;
+    (void)config;
+    return 0;
+}
+
+// Test that a valid service with no operations returns 0
+void test_valid_empty_program(void) {
+    inject_valid_service();
+
+    int result = run(main_no_operation);
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, result, "run(main_no_operation) should return 0 for valid service");
+}
+
+// -------- Test 2: Whether a valid service parses the correct configuration values
+
+// static variables to hold the configuration values
+static double got_max_iterations;
+static double got_speed;
+static char got_log_level[64];
+
+// helper function that collects the configuration values and makes sure they are not NULL
+static int main_config_access(struct Service s, Service_configuration *config) {
+    // check max-iterations with safe access
+    double *p1 = get_float_value_safe(config, "max-iterations");
+    TEST_ASSERT_NOT_NULL_MESSAGE(p1, "max-iterations should be present in configuration");
+    got_max_iterations = *p1;
+
+    // check speed
+    double *p2 = get_float_value(config, "speed");
+    TEST_ASSERT_NOT_NULL_MESSAGE(p2, "speed should be present in configuration");
+    got_speed = *p2;
+
+    // check log-level
+    char *p3 = get_string_value(config, "log-level");
+    TEST_ASSERT_NOT_NULL_MESSAGE(p3, "log-level should be present in configuration");
+    strncpy(got_log_level, p3, sizeof(got_log_level));
+    got_log_level[sizeof(got_log_level) - 1] = '\0'; // ensure null-termination
+
+    return 0;
+}
+
+// Test that a valid service with configuration access returns the correct values
+void test_valid_configuration_access(void) {
+    inject_valid_service();
+
+    int result = run(main_config_access);
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, result, "run(main_config_access) should return 0 for valid service");
+
+    // check the values
+    TEST_ASSERT_EQUAL_FLOAT_MESSAGE(100.0f, (float)got_max_iterations, "max-iterations mismatch");
+    TEST_ASSERT_EQUAL_FLOAT_MESSAGE(1.5f, (float)got_speed, "speed mismatch");
+    TEST_ASSERT_EQUAL_STRING_MESSAGE("debug", got_log_level, "log-level mismatch");
+}
+
+
+// -------- Test 3: A valid service with inputs and outputs
+
+// static structs to hold the input and output data
+static struct {
+    char service[64];
+    char name[64];
+    char address[128];
+} got_inputs[10];
+static int got_input_count;
+
+static struct {
+    char name[64];
+    char address[128];
+} got_outputs[10];
+static int got_output_count;
+
+// helper function collects input and output data
+static int main_service_access(struct Service s, Service_configuration *config) {
+        // Capture inputs: for each Input in s.inputs, for each Stream in input->streams
+    got_input_count = 0;
+    void *inp_elem = list_get_head(s.inputs);
+    while (inp_elem) {
+        struct Input *inp = (struct Input *)inp_elem;
+        void *str_elem = list_get_head(inp->streams);
+        while (str_elem) {
+            struct Stream *st = (struct Stream *)str_elem;
+            // Store into captured_inputs
+            strncpy(got_inputs[got_input_count].service, inp->service, sizeof(got_inputs[0].service));
+            got_inputs[got_input_count].service[sizeof(got_inputs[0].service)-1] = '\0';
+            strncpy(got_inputs[got_input_count].name, st->name, sizeof(got_inputs[0].name));
+            got_inputs[got_input_count].name[sizeof(got_inputs[0].name)-1] = '\0';
+            strncpy(got_inputs[got_input_count].address, st->address, sizeof(got_inputs[0].address));
+            got_inputs[got_input_count].address[sizeof(got_inputs[0].address)-1] = '\0';
+            got_input_count++;
+            str_elem = list_get_next(inp->streams);
+        }
+        inp_elem = list_get_next(s.inputs);
+    }
+
+    // Capture outputs: for each Output in s.outputs
+    got_output_count = 0;
+    void *out_elem = list_get_head(s.outputs);
+    while (out_elem) {
+        struct Output *out = (struct Output *)out_elem;
+        strncpy(got_outputs[got_output_count].name, out->name, sizeof(got_outputs[0].name));
+        got_outputs[got_output_count].name[sizeof(got_outputs[0].name)-1] = '\0';
+        strncpy(got_outputs[got_output_count].address, out->address, sizeof(got_outputs[0].address));
+        got_outputs[got_output_count].address[sizeof(got_outputs[0].address)-1] = '\0';
+        got_output_count++;
+        out_elem = list_get_next(s.outputs);
+    }
+
+    return 0;
+}
+
+// Test that a valid service with inputs and outputs returns the correct values
+void test_valid_service_access(void) {
+    inject_valid_service();
+
+    int result = run(main_service_access);
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, result, "run(main_service_access) should return 0 for valid service");
+
+    // Expected inputs: 3 entries
+    struct {
+        const char *service;
+        const char *name;
+        const char *address;
+    } want_inputs[] = {
+        { "imaging",    "track_data",    "tcp://unix:7890" },
+        { "imaging",    "debug_info",    "tcp://unix:7891" },
+        { "navigation", "location_data", "tcp://unix:7892" }
+    };
+    TEST_ASSERT_EQUAL_INT_MESSAGE(3, got_input_count, "Input count mismatch");
+    for (int i = 0; i < 3; i++) {
+        TEST_ASSERT_EQUAL_STRING_MESSAGE(want_inputs[i].service, got_inputs[i].service, "Input.service mismatch");
+        TEST_ASSERT_EQUAL_STRING_MESSAGE(want_inputs[i].name,    got_inputs[i].name,    "Input.name mismatch");
+        TEST_ASSERT_EQUAL_STRING_MESSAGE(want_inputs[i].address, got_inputs[i].address, "Input.address mismatch");
+    }
+
+    // Expected outputs: 2 entries
+    struct {
+        const char *name;
+        const char *address;
+    } want_outputs[] = {
+        { "motor_movement", "tcp://unix:7882" },
+        { "sensor_data",    "tcp://unix:7883" }
+    };
+    TEST_ASSERT_EQUAL_INT_MESSAGE(2, got_output_count, "Output count mismatch");
+    for (int i = 0; i < 2; i++) {
+        TEST_ASSERT_EQUAL_STRING_MESSAGE(want_outputs[i].name,    got_outputs[i].name,    "Output.name mismatch");
+        TEST_ASSERT_EQUAL_STRING_MESSAGE(want_outputs[i].address, got_outputs[i].address, "Output.address mismatch");
+    }
+}
+
+
+
+// -------- INVALID BOOTSPEC TESTS --------
+
+// -------- Test 4: inavlid bootspecs cause run to return != 0
+
+// helper function that does nothing
+static int main_invalid(struct Service s, Service_configuration *config) {
+    (void)s;
+    (void)config;
+    return 0; // This should never be called
+}
+
+// Test that an invalid service definition returns != 0
+void test_invalid_bootspecs(void) {
+        const char *invalids[] = {
+        "no-name",
+        "no-version",
+        "no-inputs",
+        "no-outputs",
+        "no-configuration",
+        "no-tuning",
+        "malformed-json",
+        "invalid-name",
+        "invalid-version",
+        "invalid-alias",
+        "invalid-input-type",
+        "extra-field",
+        "missing-input-stream",
+        "missing-input-service",
+        "missing-output-name",
+        "missing-output-address",
+        "non-boolean",
+        /* "invalid-config-number",  // Go explicitly skips this */
+        "type-mismatch"
+    };
+    const int n_invalid = sizeof(invalids)/sizeof(invalids[0]);
+
+    for (int i = 0; i < n_invalid; i++) {
+        inject_invalid_service(invalids[i]);
+        int result = run(main_invalid);
+        char msgbuf[128];
+        snprintf(msgbuf, sizeof(msgbuf), "Variant \"%s\" should cause run(...) != 0, but got 0", invalids[i]);
+        TEST_ASSERT_NOT_EQUAL_MESSAGE(0, result, msgbuf);
+    }
+}
+
 int main (void) {
     UNITY_BEGIN();
-    //RUN_TEST(test_bootinfo);
+    // Valid service tests
+    RUN_TEST(test_valid_empty_program);
+    RUN_TEST(test_valid_configuration_access);
+    RUN_TEST(test_valid_service_access);
+    // Invalid service tests
+    RUN_TEST(test_invalid_bootspecs);
     return UNITY_END();
 }
