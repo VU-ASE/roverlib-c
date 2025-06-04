@@ -4,7 +4,6 @@
 #include "../include/roverlib/run.h"
 
 
-
 void setUp(void) {
     // This function is called before each test
 }
@@ -21,20 +20,20 @@ static void inject_valid_service(void) {
         "    {"
         "      \"service\": \"imaging\","
         "      \"streams\": ["
-        "        { \"name\": \"track_data\",   \"address\": \"tcp://unix:7890\" },"
-        "        { \"name\": \"debug_info\",   \"address\": \"tcp://unix:7891\" }"
+        "        { \"name\": \"track-data\",   \"address\": \"tcp://unix:7890\" },"
+        "        { \"name\": \"debug-info\",   \"address\": \"tcp://unix:7891\" }"
         "      ]"
         "    },"
         "    {"
         "      \"service\": \"navigation\","
         "      \"streams\": ["
-        "        { \"name\": \"location_data\", \"address\": \"tcp://unix:7892\" }"
+        "        { \"name\": \"location-data\", \"address\": \"tcp://unix:7892\" }"
         "      ]"
         "    }"
         "  ],"
         "  \"outputs\": ["
-        "    { \"name\": \"motor_movement\", \"address\": \"tcp://unix:7882\" },"
-        "    { \"name\": \"sensor_data\",    \"address\": \"tcp://unix:7883\" }"
+        "    { \"name\": \"motor-movement\", \"address\": \"tcp://unix:7882\" },"
+        "    { \"name\": \"sensor-data\",    \"address\": \"tcp://unix:7883\" }"
         "  ],"
         "  \"configuration\": ["
         "    { \"name\": \"max-iterations\", \"type\": \"number\", \"tunable\": true,  \"value\": 100 },"
@@ -214,7 +213,6 @@ static int main_config_access(struct Service s, Service_configuration *config) {
     char *p3 = get_string_value(config, "log-level");
     TEST_ASSERT_NOT_NULL_MESSAGE(p3, "log-level should be present in configuration");
     strncpy(got_log_level, p3, sizeof(got_log_level));
-    got_log_level[sizeof(got_log_level) - 1] = '\0'; // ensure null-termination
 
     return 0;
 }
@@ -261,11 +259,8 @@ static int main_service_access(struct Service s, Service_configuration *config) 
             struct Stream *st = (struct Stream *)str_elem;
             // Store into captured_inputs
             strncpy(got_inputs[got_input_count].service, inp->service, sizeof(got_inputs[0].service));
-            got_inputs[got_input_count].service[sizeof(got_inputs[0].service)-1] = '\0';
             strncpy(got_inputs[got_input_count].name, st->name, sizeof(got_inputs[0].name));
-            got_inputs[got_input_count].name[sizeof(got_inputs[0].name)-1] = '\0';
             strncpy(got_inputs[got_input_count].address, st->address, sizeof(got_inputs[0].address));
-            got_inputs[got_input_count].address[sizeof(got_inputs[0].address)-1] = '\0';
             got_input_count++;
             str_elem = list_get_next(inp->streams);
         }
@@ -278,9 +273,7 @@ static int main_service_access(struct Service s, Service_configuration *config) 
     while (out_elem) {
         struct Output *out = (struct Output *)out_elem;
         strncpy(got_outputs[got_output_count].name, out->name, sizeof(got_outputs[0].name));
-        got_outputs[got_output_count].name[sizeof(got_outputs[0].name)-1] = '\0';
         strncpy(got_outputs[got_output_count].address, out->address, sizeof(got_outputs[0].address));
-        got_outputs[got_output_count].address[sizeof(got_outputs[0].address)-1] = '\0';
         got_output_count++;
         out_elem = list_get_next(s.outputs);
     }
@@ -301,9 +294,9 @@ void test_valid_service_access(void) {
         const char *name;
         const char *address;
     } want_inputs[] = {
-        { "imaging",    "track_data",    "tcp://unix:7890" },
-        { "imaging",    "debug_info",    "tcp://unix:7891" },
-        { "navigation", "location_data", "tcp://unix:7892" }
+        { "imaging",    "track-data",    "tcp://unix:7890" },
+        { "imaging",    "debug-info",    "tcp://unix:7891" },
+        { "navigation", "location-data", "tcp://unix:7892" }
     };
     TEST_ASSERT_EQUAL_INT_MESSAGE(3, got_input_count, "Input count mismatch");
     for (int i = 0; i < 3; i++) {
@@ -317,8 +310,8 @@ void test_valid_service_access(void) {
         const char *name;
         const char *address;
     } want_outputs[] = {
-        { "motor_movement", "tcp://unix:7882" },
-        { "sensor_data",    "tcp://unix:7883" }
+        { "motor-movement", "tcp://unix:7882" },
+        { "sensor-data",    "tcp://unix:7883" }
     };
     TEST_ASSERT_EQUAL_INT_MESSAGE(2, got_output_count, "Output count mismatch");
     for (int i = 0; i < 2; i++) {
@@ -360,7 +353,7 @@ void test_invalid_bootspecs(void) {
         "missing-output-name",
         "missing-output-address",
         "non-boolean",
-        /* "invalid-config-number",  // Go explicitly skips this */
+        "invalid-config-number", 
         "type-mismatch"
     };
     const int n_invalid = sizeof(invalids)/sizeof(invalids[0]);
