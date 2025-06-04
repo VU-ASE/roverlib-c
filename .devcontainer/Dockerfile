@@ -30,6 +30,6 @@ WORKDIR /opt/
 RUN git clone https://github.com/joelguittet/c-list.git
 RUN cd /opt/c-list && mkdir build && cd build && cmake .. && make install
 
-RUN git clone https://github.com/joelguittet/c-hashtable.git
+RUN git clone https://github.com/VU-ASE/c-hashtable.git
 RUN cd /opt/c-hashtable && mkdir build && cd build && cmake .. && make install
 

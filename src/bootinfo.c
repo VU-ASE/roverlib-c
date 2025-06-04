@@ -1,4 +1,5 @@
 #include "../include/roverlib/bootinfo.h"
+#include "../include/roverlib/validate.h"
 
 enum Type cJSON_GetTypeValue(const cJSON * j) {
     enum Type x = 0;
@@ -450,6 +451,11 @@ struct Service * cJSON_ParseService(const char * s) {
 }
 
 struct Service * cJSON_GetServiceValue(const cJSON * j) {
+    // Run the schema validation
+    if (j == NULL || !is_valid_schema(j)) {
+        return NULL; // Return NULL if the schema is invalid
+    }
+
     struct Service * x = NULL;
     if (NULL != j) {
         if (NULL != (x = cJSON_malloc(sizeof(struct Service)))) {
