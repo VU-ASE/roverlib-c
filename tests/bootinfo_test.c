@@ -376,8 +376,8 @@ int main (void) {
     // printf("AFTER FIRST TEST\n");
     // printf("BEFORE RUNNING CONFIGURATION TESTS\n");
     // RUN_TEST(test_valid_configuration_access);
-    // printf("AFTER SECOND TEST\n");
-    // RUN_TEST(test_valid_service_access);
+    printf("AFTER SECOND TEST\n");
+    RUN_TEST(test_valid_service_access);
     printf("AFTER THIRD TEST\n");
     // Invalid service tests
     RUN_TEST(test_invalid_bootspecs);
