@@ -373,9 +373,9 @@ int main (void) {
     // Valid service tests
     printf("BEFORE RUNNING TESTS\n");
     RUN_TEST(test_valid_empty_program);
-    // printf("AFTER FIRST TEST\n");
-    // RUN_TEST(test_valid_configuration_access);
-    // printf("AFTER SECOND TEST\n");
+    printf("AFTER FIRST TEST\n");
+    RUN_TEST(test_valid_configuration_access);
+    printf("AFTER SECOND TEST\n");
     // RUN_TEST(test_valid_service_access);
     // printf("AFTER THIRD TEST\n");
     // // Invalid service tests
