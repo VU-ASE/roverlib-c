@@ -41,6 +41,7 @@ test: install
 		-lcjson -lzmq -lprotobuf-c -lhashtable -llist \
 		-I/usr/include/cjson -I./include -I./unity/src -g
 	@echo "Running bootinfo tests..."
+	ls -al tests
 	@./tests/bootinfo_test_runner
 
 	@echo "Compiling configuration tests..."
