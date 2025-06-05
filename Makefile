@@ -33,6 +33,16 @@ clean:
 	@rm -f main
 
 test: install
+	@echo "Running streams tests..."
+	@gcc -o tests/streams_test_runner \
+		unity/src/unity.c \
+		tests/streams_test.c \
+		./src/*.c ./src/rovercom/outputs/*.c ./src/rovercom/tuning/*.c \
+		-lcjson -lzmq -lprotobuf-c -lhashtable -llist \
+		-I/usr/include/cjson -I./include -I./unity/src -g
+	@echo "Running streams tests..."
+	@./tests/streams_test_runner
+	
 	@echo "Compiling bootinfo tests..."
 	@gcc -o tests/bootinfo_test_runner \
 		unity/src/unity.c \
@@ -41,7 +51,6 @@ test: install
 		-lcjson -lzmq -lprotobuf-c -lhashtable -llist \
 		-I/usr/include/cjson -I./include -I./unity/src -g
 	@echo "Running bootinfo tests..."
-	ls -al tests
 	@./tests/bootinfo_test_runner
 
 	@echo "Compiling configuration tests..."
@@ -54,13 +63,5 @@ test: install
 	@echo "Running configuration tests..."
 	@./tests/configuration_test_runner
 
-	@echo "Running streams tests..."
-	@gcc -o tests/streams_test_runner \
-		unity/src/unity.c \
-		tests/streams_test.c \
-		./src/*.c ./src/rovercom/outputs/*.c ./src/rovercom/tuning/*.c \
-		-lcjson -lzmq -lprotobuf-c -lhashtable -llist \
-		-I/usr/include/cjson -I./include -I./unity/src -g
-	@echo "Running streams tests..."
-	@./tests/streams_test_runner
+
 	
