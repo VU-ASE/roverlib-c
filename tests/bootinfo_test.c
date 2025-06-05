@@ -369,10 +369,10 @@ void test_invalid_bootspecs(void) {
 
 int main (void) {
     printf("CODE: Starting bootinfo tests...\n");
-    // UNITY_BEGIN();
-    // // Valid service tests
-    // printf("BEFORE RUNNING TESTS\n");
-    // RUN_TEST(test_valid_empty_program);
+    UNITY_BEGIN();
+    // Valid service tests
+    printf("BEFORE RUNNING TESTS\n");
+    RUN_TEST(test_valid_empty_program);
     // printf("AFTER FIRST TEST\n");
     // RUN_TEST(test_valid_configuration_access);
     // printf("AFTER SECOND TEST\n");
@@ -381,5 +381,5 @@ int main (void) {
     // // Invalid service tests
     // RUN_TEST(test_invalid_bootspecs);
     // printf("AFTER INVALID TESTS\n");
-    // return UNITY_END();
+    return UNITY_END();
 }
