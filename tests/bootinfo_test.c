@@ -367,20 +367,46 @@ void test_invalid_bootspecs(void) {
     }
 }
 
-int main (void) {
-    printf("CODE: Starting bootinfo tests...\n");
+int main (int argc, char *argv[]) {
+    int which_command = 0;
+    if (argc < 2) {
+        fprintf(stderr,
+            "Usage: %s <test-number>\n"
+            "  1: test_valid_empty_program\n"
+            "  2: test_valid_configuration_access\n"
+            "  3: test_valid_service_access\n"
+            "  4: test_invalid_bootspecs\n",
+            argv[0]
+        );
+        return 1;
+    }
+
+    which_command = atoi(argv[1]);
+    if (which_command < 1 || which_command > 4) {
+        fprintf(stderr, "Error: invalid test number '%s'. Must be 1–4.\n", argv[1]);
+        return 2;
+    }
+
+    printf("CODE: Starting bootinfo tests (only running test %d)...\n", which_command);
     UNITY_BEGIN();
-    // Valid service tests
-    printf("BEFORE RUNNING TESTS\n");
-    RUN_TEST(test_valid_empty_program);
-    printf("AFTER FIRST TEST\n");
-    printf("BEFORE RUNNING CONFIGURATION TESTS\n");
-    RUN_TEST(test_valid_configuration_access);
-    printf("AFTER SECOND TEST\n");
-    RUN_TEST(test_valid_service_access);
-    printf("AFTER THIRD TEST\n");
-    // Invalid service tests
-    RUN_TEST(test_invalid_bootspecs);
-    printf("AFTER INVALID TESTS\n");
+    switch (which_command)
+    {
+    case 1:
+        RUN_TEST(test_valid_empty_program);
+        break;
+    case 2:
+        RUN_TEST(test_valid_configuration_access);
+        break;
+    case 3:
+        RUN_TEST(test_valid_service_access);
+        break;
+    case 4:
+        RUN_TEST(test_invalid_bootspecs);
+        break;
+        
+    default:
+        break;
+    }
+
     return UNITY_END();
 }
