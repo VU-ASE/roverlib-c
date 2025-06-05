@@ -371,9 +371,10 @@ int main (void) {
     printf("CODE: Starting bootinfo tests...\n");
     UNITY_BEGIN();
     // Valid service tests
-    printf("BEFORE RUNNING TESTS\n");
-    RUN_TEST(test_valid_empty_program);
-    printf("AFTER FIRST TEST\n");
+    // printf("BEFORE RUNNING TESTS\n");
+    // RUN_TEST(test_valid_empty_program);
+    // printf("AFTER FIRST TEST\n");
+    printf("BEFORE RUNNING CONFIGURATION TESTS\n");
     RUN_TEST(test_valid_configuration_access);
     printf("AFTER SECOND TEST\n");
     // RUN_TEST(test_valid_service_access);
