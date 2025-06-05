@@ -13,21 +13,21 @@ install:
 	@if [ ! -d dependencies/c-list ]; then \
 		echo "Cloning c-list…"; \
 		git clone https://github.com/joelguittet/c-list.git dependencies/c-list; \
-		mkdir -p dependencies/c-list/build; \
-		cd dependencies/c-list/build && cmake .. && make install; \
 	else \
 		echo "  c-list already exists – skipping clone && build."; \
 	fi
+	mkdir -p dependencies/c-list/build; \
+	cd dependencies/c-list/build && cmake .. && make install; \
 
 	# ─── c-hashtable ─────────────────────────────────────────────────────────────────
 	@if [ ! -d dependencies/c-hashtable ]; then \
 		echo "Cloning c-hashtable…"; \
 		git clone https://github.com/VU-ASE/c-hashtable.git dependencies/c-hashtable; \
-		mkdir -p dependencies/c-hashtable/build; \
-		cd dependencies/c-hashtable/build && cmake .. && make install; \
 	else \
 		echo "  c-hashtable already exists – skipping clone && build."; \
 	fi
+	mkdir -p dependencies/c-hashtable/build; \
+	cd dependencies/c-hashtable/build && cmake .. && make install; \
 
 clean:
 	@rm -f main
