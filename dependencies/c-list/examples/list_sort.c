@@ -4,7 +4,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2021-2023 joelguittet and c-list contributors
+ * Copyright joelguittet and c-list contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#if !defined(WIN32) && !defined(WIN64) && !defined(_MSC_VER) && !defined(_WIN32)
 #include <unistd.h>
+#endif
 #include <string.h>
 #include <assert.h>
 #include <signal.h>
