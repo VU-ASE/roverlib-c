@@ -368,6 +368,7 @@ void test_invalid_bootspecs(void) {
 }
 
 int main (void) {
+    printf("CODE: Starting bootinfo tests...\n");
     UNITY_BEGIN();
     // Valid service tests
     printf("BEFORE RUNNING TESTS\n");
