@@ -55,5 +55,6 @@ build
 .DS_Store
 boot.json
 !test/boot.json
+tests/*_runner
 test/main
 main

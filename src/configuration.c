@@ -16,10 +16,10 @@ Service_configuration new_service_configuration(Service service) {
                 hashtable_add(config.float_values, option->name, &option->value->value.number, sizeof(double));
                 break;
             case TYPE_STRING:
-                hashtable_add(config.string_values, option->name, option->value->value.string, strlen(option->value->value.string));
+                hashtable_add(config.string_values, option->name, option->value->value.string, strlen(option->value->value.string)+1);
                 break;
         }
-        if (option->tunable) {
+        if (option->tunable && *option->tunable) {
             hashtable_add(config.tunable, option->name, NULL, 0);
         }
 
@@ -49,7 +49,7 @@ void set_string_value(Service_configuration *config, char *key, char *value) {
     if (hashtable_has_key(config->tunable, key)) {
         // If it is tunable, update the value
         hashtable_remove(config->string_values, key);
-        hashtable_add(config->string_values, key, value, strlen(value));
+        hashtable_add(config->string_values, key, value, strlen(value)+1);
     }
 
     pthread_rwlock_unlock(config->rwlock);

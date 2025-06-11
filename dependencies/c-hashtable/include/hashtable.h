@@ -4,7 +4,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2021-2023 joelguittet and c-hashtable contributors
+ * Copyright joelguittet and c-hashtable contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -57,8 +57,8 @@ then using the HASHTABLE_API_VISIBILITY flag to "export" the same symbols the wa
 
 */
 
-#define HASHTABLE_CDECL   __cdecl
-#define HASHTABLE_STDCALL __stdcall
+#define HASHTABLE_CDECL __cdecl
+#define HASHTABLE_STDCALL
 
 /* export symbols by default, this is necessary for copy pasting the C and header file */
 #if !defined(HASHTABLE_HIDE_SYMBOLS) && !defined(HASHTABLE_IMPORT_SYMBOLS) && !defined(HASHTABLE_EXPORT_SYMBOLS)
@@ -89,7 +89,11 @@ then using the HASHTABLE_API_VISIBILITY flag to "export" the same symbols the wa
 
 #include <stdint.h>
 #include <stdbool.h>
+#ifdef __WINDOWS__
+#include <windows.h>
+#else
 #include <semaphore.h>
+#endif
 
 /******************************************************************************/
 /* Definitions                                                                */
@@ -100,8 +104,8 @@ then using the HASHTABLE_API_VISIBILITY flag to "export" the same symbols the wa
  */
 typedef struct hashtable_element_s {
     struct hashtable_element_s *next; /**< Next element of the hashtable */
-    char *                      key;  /**< Element key */
-    void *                      e;    /**< Element itself */
+    char                       *key;  /**< Element key */
+    void                       *e;    /**< Element itself */
 } hashtable_element_t;
 
 /**
@@ -112,7 +116,11 @@ typedef struct {
     size_t                size;  /**< Size of the table of lists of elements */
     size_t                count; /**< Number of elements in the hashtable */
     bool                  alloc; /**< Flag to indicate if elements are allocated when they are added in the hashtable */
-    sem_t                 sem;   /**< Semaphore used to protect the access to the hashtable */
+#ifdef __WINDOWS__
+    HANDLE sem; /**< Semaphore used to protect the access to the hashtable */
+#else
+    sem_t sem; /**< Semaphore used to protect the access to the hashtable */
+#endif
 } hashtable_t;
 
 /******************************************************************************/

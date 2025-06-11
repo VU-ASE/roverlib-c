@@ -11,7 +11,14 @@
                 "ms-vscode.cmake-tools", // CMake Tools extension
                 "ms-vscode.makefile-tools", // Makefile Tools extension
                 "dbankier.vscode-quick-select" // Quick select with cmd/ctrl+k "
-            ]
+            ],
+            "settings": {
+                "files.associations": {
+                    "unity.h": "c",
+                    "configuration.h": "c"
+                },
+                "cmake.sourceDirectory": "/workspaces/roverlib-c/dependencies/c-list" 
+            }
         }
     },
     "capAdd": [

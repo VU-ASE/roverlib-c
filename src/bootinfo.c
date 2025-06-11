@@ -1,4 +1,5 @@
 #include "../include/roverlib/bootinfo.h"
+#include "../include/roverlib/validate.h"
 
 enum Type cJSON_GetTypeValue(const cJSON * j) {
     enum Type x = 0;
@@ -450,6 +451,11 @@ struct Service * cJSON_ParseService(const char * s) {
 }
 
 struct Service * cJSON_GetServiceValue(const cJSON * j) {
+    // Run the schema validation
+    if (j == NULL || !is_valid_schema(j)) {
+        return NULL; // Return NULL if the schema is invalid
+    }
+
     struct Service * x = NULL;
     if (NULL != j) {
         if (NULL != (x = cJSON_malloc(sizeof(struct Service)))) {
@@ -466,7 +472,7 @@ struct Service * cJSON_GetServiceValue(const cJSON * j) {
                 }
             }
             else {
-                x->configuration = list_create(false, NULL);
+                return NULL; // If no configuration is provided, return NULL
             }
             if (cJSON_HasObjectItem(j, "inputs")) {
                 list_t * x1 = list_create(false, NULL);
@@ -480,10 +486,13 @@ struct Service * cJSON_GetServiceValue(const cJSON * j) {
                 }
             }
             else {
-                x->inputs = list_create(false, NULL);
+                return NULL; // If no inputs are provided, return NULL
             }
             if (cJSON_HasObjectItem(j, "name")) {
                 x->name = strdup(cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(j, "name")));
+            }
+            else {
+                return NULL; // If no name is provided, return NULL
             }
             if (cJSON_HasObjectItem(j, "outputs")) {
                 list_t * x1 = list_create(false, NULL);
@@ -497,19 +506,19 @@ struct Service * cJSON_GetServiceValue(const cJSON * j) {
                 }
             }
             else {
-                x->outputs = list_create(false, NULL);
+                return NULL; // If no outputs are provided, return NULL
             }
             if (cJSON_HasObjectItem(j, "tuning")) {
                 x->tuning = cJSON_GetTuningValue(cJSON_GetObjectItemCaseSensitive(j, "tuning"));
             }
+            else {
+                return NULL; // If no tuning is provided, return NULL
+            }
             if (cJSON_HasObjectItem(j, "version")) {
                 x->version = strdup(cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(j, "version")));
             }
-            if (cJSON_HasObjectItem(j, "service")) {
-                x->service = (void *)0xDEADBEEF;
-            }
             else {
-                x->service = (void *)0xDEADBEEF;
+                return NULL; // If no version is provided, return NULL
             }
         }
     }
