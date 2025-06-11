@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.1.0](https://github.com/VU-ASE/roverlib-c/compare/v1.0.4...v1.1.0) (2025-06-11)
+
+
+### Features
+
+* added configuration and stream tests ([f85ed5c](https://github.com/VU-ASE/roverlib-c/commit/f85ed5c3dfff70340c917a3af977825f8def1088))
+* added extra tests and some NULL checking ([0c340b1](https://github.com/VU-ASE/roverlib-c/commit/0c340b1f45f158973262d1123b2a75e1727a9bc6))
+* added some helper functions for bootinfo ([39caa21](https://github.com/VU-ASE/roverlib-c/commit/39caa2143e9d2285b4f605d45b8b737f6aff4175))
+* cloning dep is now in the makefile ([865fd89](https://github.com/VU-ASE/roverlib-c/commit/865fd89744e38837b32d6040006ab34939f6d47b))
+* include bootspec validation checks ([1092552](https://github.com/VU-ASE/roverlib-c/commit/10925523148c2a50c370e189ec6e4e874f17d605))
+
+
+### Bug Fixes
+
+* added return NULL for missing mandatory fields ([08d4d2b](https://github.com/VU-ASE/roverlib-c/commit/08d4d2b7d9cd66591d7ec6ba036fa6484d7f8079))
+* added thread clean up logic ([270182c](https://github.com/VU-ASE/roverlib-c/commit/270182ca14ac6710a51ce14b6167fd6570cfce79))
+* linkage of dependencies on first clone ([b25b805](https://github.com/VU-ASE/roverlib-c/commit/b25b8053aec7e9d1247a3b7dadd11662ae3e9104))
+* prevent eternal "expected" tests with reused action ([6adba4e](https://github.com/VU-ASE/roverlib-c/commit/6adba4e7420d7af1f16fb16a0abeb344ef0d85c9))
+* release-please PR eternally expected ([3559b1b](https://github.com/VU-ASE/roverlib-c/commit/3559b1bb75c531ea10669b73e6550f1b1927cd5b))
+
 ## [1.0.4](https://github.com/VU-ASE/roverlib-c/compare/v1.0.3...v1.0.4) (2025-03-30)
 
 
