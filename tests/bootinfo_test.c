@@ -186,7 +186,7 @@ static int main_no_operation(struct Service s, Service_configuration *config) {
 void test_valid_empty_program(void) {
     inject_valid_service();
 
-    int result = run(main_no_operation);
+    int result = run(main_no_operation, NULL);
     TEST_ASSERT_EQUAL_INT_MESSAGE(0, result, "run(main_no_operation) should return 0 for valid service");
 }
 
@@ -221,7 +221,7 @@ static int main_config_access(struct Service s, Service_configuration *config) {
 void test_valid_configuration_access(void) {
     inject_valid_service();
 
-    int result = run(main_config_access);
+    int result = run(main_config_access, NULL);
     TEST_ASSERT_EQUAL_INT_MESSAGE(0, result, "run(main_config_access) should return 0 for valid service");
 
     // check the values
@@ -285,7 +285,7 @@ static int main_service_access(struct Service s, Service_configuration *config) 
 void test_valid_service_access(void) {
     inject_valid_service();
 
-    int result = run(main_service_access);
+    int result = run(main_service_access, NULL);
     TEST_ASSERT_EQUAL_INT_MESSAGE(0, result, "run(main_service_access) should return 0 for valid service");
 
     // Expected inputs: 3 entries
@@ -360,7 +360,7 @@ void test_invalid_bootspecs(void) {
 
     for (int i = 0; i < n_invalid; i++) {
         inject_invalid_service(invalids[i]);
-        int result = run(main_invalid);
+        int result = run(main_invalid, NULL);
         char msgbuf[128];
         snprintf(msgbuf, sizeof(msgbuf), "Variant \"%s\" should cause run(...) != 0, but got 0", invalids[i]);
         TEST_ASSERT_NOT_EQUAL_MESSAGE(0, result, msgbuf);
