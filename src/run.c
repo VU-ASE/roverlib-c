@@ -1,4 +1,24 @@
 #include "../include/roverlib/run.h"
+#include <signal.h>
+
+// Global variable to hold the termination callback
+Termination_callback global_on_terminate = NULL;
+
+// Thread that waits for termination signals (SIGINT, SIGTERM) and calls the termination callback
+void *termination_thread(void *arg) {
+    sigset_t *set = (sigset_t *)arg;
+    int signum;
+    // wait for a signal to be received
+    if (sigwait(set, &signum) == 0) {
+        if (global_on_terminate != NULL) {
+            global_on_terminate(signum); // Call the user-provided termination callback
+        }
+        exit(0);  // exit the program gracefully
+    } else {
+      perror("sigwait failed");
+      return NULL;
+    }
+}
 
 // Thread that runs to update the service configuration that is shared with the user program
 void *configuration_thread(void *arg) {
@@ -93,9 +113,24 @@ void *configuration_thread(void *arg) {
 
 // The run function takes in one argument:
 // - The Main callback function, which is the user main function to run
-int run(Main_callback main) {
+int run(Main_callback main, Termination_callback on_terminate) {
   if (main == NULL) {
     printf("No main function to call was specified\n");
+    return 1;
+  }
+
+  // Block signals SIGINT and SIGTERM so that we can handle them in a separate thread
+  sigset_t set;
+  sigemptyset(&set);  // Initialize the signal set to empty
+  sigaddset(&set, SIGINT);  // Add SIGINT to the set
+  sigaddset(&set, SIGTERM); // Add SIGTERM to the set
+  pthread_sigmask(SIG_BLOCK, &set, NULL); // Block these signals in the main thread
+
+  pthread_t terminated_thread;
+  // Save the user-provided termination callback and start the termination thread
+  global_on_terminate = on_terminate;
+  if (pthread_create(&terminated_thread, NULL, termination_thread, &set) != 0) {
+    fprintf(stderr, "Error: pthread_create failed for termination thread\n");
     return 1;
   }
 
