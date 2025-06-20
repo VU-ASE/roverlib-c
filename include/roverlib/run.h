@@ -25,8 +25,11 @@ typedef struct {
 // Thread that runs to update the service configuration that is shared with the user program
 void *configuration_thread(void *arg);
 
+// Defines a function type that the program will call on termination
+typedef int (*Termination_callback)(int signum);
+
 // The run function takes in one argument:
 // - The Main callback function, which is the user main function to run
-int run(Main_callback main);
+int run(Main_callback main, Termination_callback on_terminate);
 
 #endif // RUN_H
