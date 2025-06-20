@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/VU-ASE/roverlib-c/compare/v1.1.0...v1.2.0) (2025-06-20)
+
+
+### Features
+
+* added termination thread to run function ([2ae4494](https://github.com/VU-ASE/roverlib-c/commit/2ae449456c5c5ce167bfb04e8a019464da2d1df1))
+
+
+### Bug Fixes
+
+* added NULL argument to the run function in tests ([901d7ad](https://github.com/VU-ASE/roverlib-c/commit/901d7adfc5083bc08654422daf883c556e77fce6))
+
 ## [1.1.0](https://github.com/VU-ASE/roverlib-c/compare/v1.0.4...v1.1.0) (2025-06-11)
 
 
