@@ -52,67 +52,86 @@ void   protobuf_msgs__rpm_sensor_output__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__rpm_sensor_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__rpm_sensor_output__field_descriptors[4] =
+void   protobuf_msgs__motor_information__init
+                     (ProtobufMsgs__MotorInformation         *message)
+{
+  static const ProtobufMsgs__MotorInformation init_value = PROTOBUF_MSGS__MOTOR_INFORMATION__INIT;
+  *message = init_value;
+}
+size_t protobuf_msgs__motor_information__get_packed_size
+                     (const ProtobufMsgs__MotorInformation *message)
+{
+  assert(message->base.descriptor == &protobuf_msgs__motor_information__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t protobuf_msgs__motor_information__pack
+                     (const ProtobufMsgs__MotorInformation *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &protobuf_msgs__motor_information__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t protobuf_msgs__motor_information__pack_to_buffer
+                     (const ProtobufMsgs__MotorInformation *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &protobuf_msgs__motor_information__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+ProtobufMsgs__MotorInformation *
+       protobuf_msgs__motor_information__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (ProtobufMsgs__MotorInformation *)
+     protobuf_c_message_unpack (&protobuf_msgs__motor_information__descriptor,
+                                allocator, len, data);
+}
+void   protobuf_msgs__motor_information__free_unpacked
+                     (ProtobufMsgs__MotorInformation *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &protobuf_msgs__motor_information__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+static const ProtobufCFieldDescriptor protobuf_msgs__rpm_sensor_output__field_descriptors[2] =
 {
   {
-    "leftRpm",
+    "leftMotor",
     1,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__RpmSensorOutput, leftrpm),
-    NULL,
+    offsetof(ProtobufMsgs__RpmSensorOutput, leftmotor),
+    &protobuf_msgs__motor_information__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "leftAngle",
+    "rightMotor",
     2,
     PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_TYPE_MESSAGE,
     0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__RpmSensorOutput, leftangle),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "rightRpm",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__RpmSensorOutput, rightrpm),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "rightAngle",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__RpmSensorOutput, rightangle),
-    NULL,
+    offsetof(ProtobufMsgs__RpmSensorOutput, rightmotor),
+    &protobuf_msgs__motor_information__descriptor,
     NULL,
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned protobuf_msgs__rpm_sensor_output__field_indices_by_name[] = {
-  1,   /* field[1] = leftAngle */
-  0,   /* field[0] = leftRpm */
-  3,   /* field[3] = rightAngle */
-  2,   /* field[2] = rightRpm */
+  0,   /* field[0] = leftMotor */
+  1,   /* field[1] = rightMotor */
 };
 static const ProtobufCIntRange protobuf_msgs__rpm_sensor_output__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 2 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__rpm_sensor_output__descriptor =
 {
@@ -122,10 +141,100 @@ const ProtobufCMessageDescriptor protobuf_msgs__rpm_sensor_output__descriptor =
   "ProtobufMsgs__RpmSensorOutput",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__RpmSensorOutput),
-  4,
+  2,
   protobuf_msgs__rpm_sensor_output__field_descriptors,
   protobuf_msgs__rpm_sensor_output__field_indices_by_name,
   1,  protobuf_msgs__rpm_sensor_output__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__rpm_sensor_output__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor protobuf_msgs__motor_information__field_descriptors[5] =
+{
+  {
+    "rpm",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__MotorInformation, rpm),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "speed",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_FLOAT,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__MotorInformation, speed),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "ticks",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__MotorInformation, ticks),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "timeoutCount",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__MotorInformation, timeoutcount),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "sequenceNumber",
+    5,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__MotorInformation, sequencenumber),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned protobuf_msgs__motor_information__field_indices_by_name[] = {
+  0,   /* field[0] = rpm */
+  4,   /* field[4] = sequenceNumber */
+  1,   /* field[1] = speed */
+  2,   /* field[2] = ticks */
+  3,   /* field[3] = timeoutCount */
+};
+static const ProtobufCIntRange protobuf_msgs__motor_information__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 5 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__motor_information__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.MotorInformation",
+  "MotorInformation",
+  "ProtobufMsgs__MotorInformation",
+  "protobuf_msgs",
+  sizeof(ProtobufMsgs__MotorInformation),
+  5,
+  protobuf_msgs__motor_information__field_descriptors,
+  protobuf_msgs__motor_information__field_indices_by_name,
+  1,  protobuf_msgs__motor_information__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__motor_information__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
