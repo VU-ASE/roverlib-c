@@ -16,6 +16,7 @@ PROTOBUF_C__BEGIN_DECLS
 
 
 typedef struct _ProtobufMsgs__RpmSensorOutput ProtobufMsgs__RpmSensorOutput;
+typedef struct _ProtobufMsgs__MotorInformation ProtobufMsgs__MotorInformation;
 
 
 /* --- enums --- */
@@ -23,17 +24,54 @@ typedef struct _ProtobufMsgs__RpmSensorOutput ProtobufMsgs__RpmSensorOutput;
 
 /* --- messages --- */
 
+/*
+ * This is the message format that a RPM sensor service can send out. It is deliberately left with many details, to allow 
+ * for different use cases.
+ */
 struct  _ProtobufMsgs__RpmSensorOutput
 {
   ProtobufCMessage base;
-  float leftrpm;
-  float leftangle;
-  float rightrpm;
-  float rightangle;
+  ProtobufMsgs__MotorInformation *leftmotor;
+  ProtobufMsgs__MotorInformation *rightmotor;
 };
 #define PROTOBUF_MSGS__RPM_SENSOR_OUTPUT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__rpm_sensor_output__descriptor) \
-    , 0, 0, 0, 0 }
+    , NULL, NULL }
+
+
+struct  _ProtobufMsgs__MotorInformation
+{
+  ProtobufCMessage base;
+  /*
+   * This is probably all the information you need to understand how the motor behaves
+   */
+  /*
+   * RPM
+   */
+  float rpm;
+  /*
+   * Speed in m/s, as computed from the RPM
+   */
+  float speed;
+  /*
+   * More fine-grained details to (re)compute the RPM and speed or other parameters you are interested in
+   */
+  /*
+   * Number of ticks since the last timer reset
+   */
+  uint32_t ticks;
+  /*
+   * Number of timeouts since the last timer reset, if this is greater than 0, the motor is not spinning
+   */
+  uint32_t timeoutcount;
+  /*
+   * Sequence number of the message, can be used to detect if the message is stale
+   */
+  uint32_t sequencenumber;
+};
+#define PROTOBUF_MSGS__MOTOR_INFORMATION__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__motor_information__descriptor) \
+    , 0, 0, 0, 0, 0 }
 
 
 /* ProtobufMsgs__RpmSensorOutput methods */
@@ -55,10 +93,32 @@ ProtobufMsgs__RpmSensorOutput *
 void   protobuf_msgs__rpm_sensor_output__free_unpacked
                      (ProtobufMsgs__RpmSensorOutput *message,
                       ProtobufCAllocator *allocator);
+/* ProtobufMsgs__MotorInformation methods */
+void   protobuf_msgs__motor_information__init
+                     (ProtobufMsgs__MotorInformation         *message);
+size_t protobuf_msgs__motor_information__get_packed_size
+                     (const ProtobufMsgs__MotorInformation   *message);
+size_t protobuf_msgs__motor_information__pack
+                     (const ProtobufMsgs__MotorInformation   *message,
+                      uint8_t             *out);
+size_t protobuf_msgs__motor_information__pack_to_buffer
+                     (const ProtobufMsgs__MotorInformation   *message,
+                      ProtobufCBuffer     *buffer);
+ProtobufMsgs__MotorInformation *
+       protobuf_msgs__motor_information__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   protobuf_msgs__motor_information__free_unpacked
+                     (ProtobufMsgs__MotorInformation *message,
+                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*ProtobufMsgs__RpmSensorOutput_Closure)
                  (const ProtobufMsgs__RpmSensorOutput *message,
+                  void *closure_data);
+typedef void (*ProtobufMsgs__MotorInformation_Closure)
+                 (const ProtobufMsgs__MotorInformation *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -67,6 +127,7 @@ typedef void (*ProtobufMsgs__RpmSensorOutput_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCMessageDescriptor protobuf_msgs__rpm_sensor_output__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__motor_information__descriptor;
 
 PROTOBUF_C__END_DECLS
 

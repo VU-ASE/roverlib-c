@@ -52,7 +52,7 @@ void   protobuf_msgs__sensor_output__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__sensor_output__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descriptors[22] =
+static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descriptors[21] =
 {
   {
     "sensorId",
@@ -163,12 +163,12 @@ static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descri
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
-    "rpmOuput",
+    "rpmOutput",
     10,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
-    offsetof(ProtobufMsgs__SensorOutput, rpmouput),
+    offsetof(ProtobufMsgs__SensorOutput, rpmoutput),
     &protobuf_msgs__rpm_sensor_output__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
@@ -182,18 +182,6 @@ static const ProtobufCFieldDescriptor protobuf_msgs__sensor_output__field_descri
     offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
     offsetof(ProtobufMsgs__SensorOutput, luxoutput),
     &protobuf_msgs__lux_sensor_output__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "laptimeOutput",
-    12,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProtobufMsgs__SensorOutput, sensor_output_case),
-    offsetof(ProtobufMsgs__SensorOutput, laptimeoutput),
-    &protobuf_msgs__lap_time_output__descriptor,
     NULL,
     0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
@@ -324,29 +312,29 @@ static const unsigned protobuf_msgs__sensor_output__field_indices_by_name[] = {
   3,   /* field[3] = cameraOutput */
   6,   /* field[6] = controllerOutput */
   4,   /* field[4] = distanceOutput */
-  21,   /* field[21] = energyOutput */
-  18,   /* field[18] = genericBoolArray */
-  14,   /* field[14] = genericBoolScalar */
-  17,   /* field[17] = genericFloatArray */
-  13,   /* field[13] = genericFloatScalar */
-  16,   /* field[16] = genericIntArray */
-  12,   /* field[12] = genericIntScalar */
-  19,   /* field[19] = genericStringArray */
-  15,   /* field[15] = genericStringScalar */
+  20,   /* field[20] = energyOutput */
+  17,   /* field[17] = genericBoolArray */
+  13,   /* field[13] = genericBoolScalar */
+  16,   /* field[16] = genericFloatArray */
+  12,   /* field[12] = genericFloatScalar */
+  15,   /* field[15] = genericIntArray */
+  11,   /* field[11] = genericIntScalar */
+  18,   /* field[18] = genericStringArray */
+  14,   /* field[14] = genericStringScalar */
   7,   /* field[7] = imuOutput */
-  11,   /* field[11] = laptimeOutput */
-  20,   /* field[20] = lidarOutput */
+  19,   /* field[19] = lidarOutput */
   10,   /* field[10] = luxOutput */
-  9,   /* field[9] = rpmOuput */
+  9,   /* field[9] = rpmOutput */
   0,   /* field[0] = sensorId */
   5,   /* field[5] = speedOutput */
   2,   /* field[2] = status */
   1,   /* field[1] = timestamp */
 };
-static const ProtobufCIntRange protobuf_msgs__sensor_output__number_ranges[1 + 1] =
+static const ProtobufCIntRange protobuf_msgs__sensor_output__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 22 }
+  { 13, 11 },
+  { 0, 21 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__sensor_output__descriptor =
 {
@@ -356,10 +344,10 @@ const ProtobufCMessageDescriptor protobuf_msgs__sensor_output__descriptor =
   "ProtobufMsgs__SensorOutput",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__SensorOutput),
-  22,
+  21,
   protobuf_msgs__sensor_output__field_descriptors,
   protobuf_msgs__sensor_output__field_indices_by_name,
-  1,  protobuf_msgs__sensor_output__number_ranges,
+  2,  protobuf_msgs__sensor_output__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__sensor_output__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

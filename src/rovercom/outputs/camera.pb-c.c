@@ -7,28 +7,190 @@
 #endif
 
 #include "rovercom/outputs/camera.pb-c.h"
+void   protobuf_msgs__camera_sensor_output__init
+                     (ProtobufMsgs__CameraSensorOutput         *message)
+{
+  static const ProtobufMsgs__CameraSensorOutput init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__INIT;
+  *message = init_value;
+}
+size_t protobuf_msgs__camera_sensor_output__get_packed_size
+                     (const ProtobufMsgs__CameraSensorOutput *message)
+{
+  assert(message->base.descriptor == &protobuf_msgs__camera_sensor_output__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t protobuf_msgs__camera_sensor_output__pack
+                     (const ProtobufMsgs__CameraSensorOutput *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &protobuf_msgs__camera_sensor_output__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t protobuf_msgs__camera_sensor_output__pack_to_buffer
+                     (const ProtobufMsgs__CameraSensorOutput *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &protobuf_msgs__camera_sensor_output__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+ProtobufMsgs__CameraSensorOutput *
+       protobuf_msgs__camera_sensor_output__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (ProtobufMsgs__CameraSensorOutput *)
+     protobuf_c_message_unpack (&protobuf_msgs__camera_sensor_output__descriptor,
+                                allocator, len, data);
+}
+void   protobuf_msgs__camera_sensor_output__free_unpacked
+                     (ProtobufMsgs__CameraSensorOutput *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &protobuf_msgs__camera_sensor_output__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   protobuf_msgs__resolution__init
+                     (ProtobufMsgs__Resolution         *message)
+{
+  static const ProtobufMsgs__Resolution init_value = PROTOBUF_MSGS__RESOLUTION__INIT;
+  *message = init_value;
+}
+size_t protobuf_msgs__resolution__get_packed_size
+                     (const ProtobufMsgs__Resolution *message)
+{
+  assert(message->base.descriptor == &protobuf_msgs__resolution__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t protobuf_msgs__resolution__pack
+                     (const ProtobufMsgs__Resolution *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &protobuf_msgs__resolution__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t protobuf_msgs__resolution__pack_to_buffer
+                     (const ProtobufMsgs__Resolution *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &protobuf_msgs__resolution__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+ProtobufMsgs__Resolution *
+       protobuf_msgs__resolution__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (ProtobufMsgs__Resolution *)
+     protobuf_c_message_unpack (&protobuf_msgs__resolution__descriptor,
+                                allocator, len, data);
+}
+void   protobuf_msgs__resolution__free_unpacked
+                     (ProtobufMsgs__Resolution *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &protobuf_msgs__resolution__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   protobuf_msgs__horizontal_scan__init
+                     (ProtobufMsgs__HorizontalScan         *message)
+{
+  static const ProtobufMsgs__HorizontalScan init_value = PROTOBUF_MSGS__HORIZONTAL_SCAN__INIT;
+  *message = init_value;
+}
+size_t protobuf_msgs__horizontal_scan__get_packed_size
+                     (const ProtobufMsgs__HorizontalScan *message)
+{
+  assert(message->base.descriptor == &protobuf_msgs__horizontal_scan__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t protobuf_msgs__horizontal_scan__pack
+                     (const ProtobufMsgs__HorizontalScan *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &protobuf_msgs__horizontal_scan__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t protobuf_msgs__horizontal_scan__pack_to_buffer
+                     (const ProtobufMsgs__HorizontalScan *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &protobuf_msgs__horizontal_scan__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+ProtobufMsgs__HorizontalScan *
+       protobuf_msgs__horizontal_scan__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (ProtobufMsgs__HorizontalScan *)
+     protobuf_c_message_unpack (&protobuf_msgs__horizontal_scan__descriptor,
+                                allocator, len, data);
+}
+void   protobuf_msgs__horizontal_scan__free_unpacked
+                     (ProtobufMsgs__HorizontalScan *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &protobuf_msgs__horizontal_scan__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   protobuf_msgs__debug_frame__init
+                     (ProtobufMsgs__DebugFrame         *message)
+{
+  static const ProtobufMsgs__DebugFrame init_value = PROTOBUF_MSGS__DEBUG_FRAME__INIT;
+  *message = init_value;
+}
+size_t protobuf_msgs__debug_frame__get_packed_size
+                     (const ProtobufMsgs__DebugFrame *message)
+{
+  assert(message->base.descriptor == &protobuf_msgs__debug_frame__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t protobuf_msgs__debug_frame__pack
+                     (const ProtobufMsgs__DebugFrame *message,
+                      uint8_t       *out)
+{
+  assert(message->base.descriptor == &protobuf_msgs__debug_frame__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t protobuf_msgs__debug_frame__pack_to_buffer
+                     (const ProtobufMsgs__DebugFrame *message,
+                      ProtobufCBuffer *buffer)
+{
+  assert(message->base.descriptor == &protobuf_msgs__debug_frame__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+ProtobufMsgs__DebugFrame *
+       protobuf_msgs__debug_frame__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (ProtobufMsgs__DebugFrame *)
+     protobuf_c_message_unpack (&protobuf_msgs__debug_frame__descriptor,
+                                allocator, len, data);
+}
+void   protobuf_msgs__debug_frame__free_unpacked
+                     (ProtobufMsgs__DebugFrame *message,
+                      ProtobufCAllocator *allocator)
+{
+  if(!message)
+    return;
+  assert(message->base.descriptor == &protobuf_msgs__debug_frame__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   protobuf_msgs__canvas_object__point__init
                      (ProtobufMsgs__CanvasObject__Point         *message)
 {
   static const ProtobufMsgs__CanvasObject__Point init_value = PROTOBUF_MSGS__CANVAS_OBJECT__POINT__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__canvas_object__color__init
-                     (ProtobufMsgs__CanvasObject__Color         *message)
-{
-  static const ProtobufMsgs__CanvasObject__Color init_value = PROTOBUF_MSGS__CANVAS_OBJECT__COLOR__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__canvas_object__line__init
-                     (ProtobufMsgs__CanvasObject__Line         *message)
-{
-  static const ProtobufMsgs__CanvasObject__Line init_value = PROTOBUF_MSGS__CANVAS_OBJECT__LINE__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__canvas_object__rectangle__init
-                     (ProtobufMsgs__CanvasObject__Rectangle         *message)
-{
-  static const ProtobufMsgs__CanvasObject__Rectangle init_value = PROTOBUF_MSGS__CANVAS_OBJECT__RECTANGLE__INIT;
   *message = init_value;
 }
 void   protobuf_msgs__canvas_object__circle__init
@@ -127,75 +289,250 @@ void   protobuf_msgs__canvas__free_unpacked
   assert(message->base.descriptor == &protobuf_msgs__canvas__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
-void   protobuf_msgs__camera_sensor_output__trajectory__point__init
-                     (ProtobufMsgs__CameraSensorOutput__Trajectory__Point         *message)
+static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__field_descriptors[4] =
 {
-  static const ProtobufMsgs__CameraSensorOutput__Trajectory__Point init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__POINT__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__camera_sensor_output__trajectory__init
-                     (ProtobufMsgs__CameraSensorOutput__Trajectory         *message)
+  {
+    "resolution",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__CameraSensorOutput, resolution),
+    &protobuf_msgs__resolution__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "horizontalScans",
+    2,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    offsetof(ProtobufMsgs__CameraSensorOutput, n_horizontalscans),
+    offsetof(ProtobufMsgs__CameraSensorOutput, horizontalscans),
+    &protobuf_msgs__horizontal_scan__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "detectedObjects",
+    3,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_ENUM,
+    offsetof(ProtobufMsgs__CameraSensorOutput, n_detectedobjects),
+    offsetof(ProtobufMsgs__CameraSensorOutput, detectedobjects),
+    &protobuf_msgs__detected_objects__descriptor,
+    NULL,
+    0 | PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "debugFrame",
+    4,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__CameraSensorOutput, debugframe),
+    &protobuf_msgs__debug_frame__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned protobuf_msgs__camera_sensor_output__field_indices_by_name[] = {
+  3,   /* field[3] = debugFrame */
+  2,   /* field[2] = detectedObjects */
+  1,   /* field[1] = horizontalScans */
+  0,   /* field[0] = resolution */
+};
+static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__number_ranges[1 + 1] =
 {
-  static const ProtobufMsgs__CameraSensorOutput__Trajectory init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__camera_sensor_output__debug_frame__init
-                     (ProtobufMsgs__CameraSensorOutput__DebugFrame         *message)
+  { 1, 0 },
+  { 0, 4 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__descriptor =
 {
-  static const ProtobufMsgs__CameraSensorOutput__DebugFrame init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__camera_sensor_output__objects__init
-                     (ProtobufMsgs__CameraSensorOutput__Objects         *message)
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.CameraSensorOutput",
+  "CameraSensorOutput",
+  "ProtobufMsgs__CameraSensorOutput",
+  "protobuf_msgs",
+  sizeof(ProtobufMsgs__CameraSensorOutput),
+  4,
+  protobuf_msgs__camera_sensor_output__field_descriptors,
+  protobuf_msgs__camera_sensor_output__field_indices_by_name,
+  1,  protobuf_msgs__camera_sensor_output__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor protobuf_msgs__resolution__field_descriptors[2] =
 {
-  static const ProtobufMsgs__CameraSensorOutput__Objects init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__OBJECTS__INIT;
-  *message = init_value;
-}
-void   protobuf_msgs__camera_sensor_output__init
-                     (ProtobufMsgs__CameraSensorOutput         *message)
+  {
+    "width",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__Resolution, width),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "height",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__Resolution, height),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned protobuf_msgs__resolution__field_indices_by_name[] = {
+  1,   /* field[1] = height */
+  0,   /* field[0] = width */
+};
+static const ProtobufCIntRange protobuf_msgs__resolution__number_ranges[1 + 1] =
 {
-  static const ProtobufMsgs__CameraSensorOutput init_value = PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__INIT;
-  *message = init_value;
-}
-size_t protobuf_msgs__camera_sensor_output__get_packed_size
-                     (const ProtobufMsgs__CameraSensorOutput *message)
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__resolution__descriptor =
 {
-  assert(message->base.descriptor == &protobuf_msgs__camera_sensor_output__descriptor);
-  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
-}
-size_t protobuf_msgs__camera_sensor_output__pack
-                     (const ProtobufMsgs__CameraSensorOutput *message,
-                      uint8_t       *out)
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.Resolution",
+  "Resolution",
+  "ProtobufMsgs__Resolution",
+  "protobuf_msgs",
+  sizeof(ProtobufMsgs__Resolution),
+  2,
+  protobuf_msgs__resolution__field_descriptors,
+  protobuf_msgs__resolution__field_indices_by_name,
+  1,  protobuf_msgs__resolution__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__resolution__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor protobuf_msgs__horizontal_scan__field_descriptors[3] =
 {
-  assert(message->base.descriptor == &protobuf_msgs__camera_sensor_output__descriptor);
-  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
-}
-size_t protobuf_msgs__camera_sensor_output__pack_to_buffer
-                     (const ProtobufMsgs__CameraSensorOutput *message,
-                      ProtobufCBuffer *buffer)
+  {
+    "xLeft",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__HorizontalScan, xleft),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "xRight",
+    2,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__HorizontalScan, xright),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "y",
+    3,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_UINT32,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__HorizontalScan, y),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned protobuf_msgs__horizontal_scan__field_indices_by_name[] = {
+  0,   /* field[0] = xLeft */
+  1,   /* field[1] = xRight */
+  2,   /* field[2] = y */
+};
+static const ProtobufCIntRange protobuf_msgs__horizontal_scan__number_ranges[1 + 1] =
 {
-  assert(message->base.descriptor == &protobuf_msgs__camera_sensor_output__descriptor);
-  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
-}
-ProtobufMsgs__CameraSensorOutput *
-       protobuf_msgs__camera_sensor_output__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data)
+  { 1, 0 },
+  { 0, 3 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__horizontal_scan__descriptor =
 {
-  return (ProtobufMsgs__CameraSensorOutput *)
-     protobuf_c_message_unpack (&protobuf_msgs__camera_sensor_output__descriptor,
-                                allocator, len, data);
-}
-void   protobuf_msgs__camera_sensor_output__free_unpacked
-                     (ProtobufMsgs__CameraSensorOutput *message,
-                      ProtobufCAllocator *allocator)
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.HorizontalScan",
+  "HorizontalScan",
+  "ProtobufMsgs__HorizontalScan",
+  "protobuf_msgs",
+  sizeof(ProtobufMsgs__HorizontalScan),
+  3,
+  protobuf_msgs__horizontal_scan__field_descriptors,
+  protobuf_msgs__horizontal_scan__field_indices_by_name,
+  1,  protobuf_msgs__horizontal_scan__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__horizontal_scan__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor protobuf_msgs__debug_frame__field_descriptors[2] =
 {
-  if(!message)
-    return;
-  assert(message->base.descriptor == &protobuf_msgs__camera_sensor_output__descriptor);
-  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
-}
+  {
+    "jpeg",
+    1,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_BYTES,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__DebugFrame, jpeg),
+    NULL,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "canvas",
+    5,
+    PROTOBUF_C_LABEL_NONE,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    offsetof(ProtobufMsgs__DebugFrame, canvas),
+    &protobuf_msgs__canvas__descriptor,
+    NULL,
+    0,             /* flags */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned protobuf_msgs__debug_frame__field_indices_by_name[] = {
+  1,   /* field[1] = canvas */
+  0,   /* field[0] = jpeg */
+};
+static const ProtobufCIntRange protobuf_msgs__debug_frame__number_ranges[2 + 1] =
+{
+  { 1, 0 },
+  { 5, 1 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor protobuf_msgs__debug_frame__descriptor =
+{
+  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
+  "protobuf_msgs.DebugFrame",
+  "DebugFrame",
+  "ProtobufMsgs__DebugFrame",
+  "protobuf_msgs",
+  sizeof(ProtobufMsgs__DebugFrame),
+  2,
+  protobuf_msgs__debug_frame__field_descriptors,
+  protobuf_msgs__debug_frame__field_indices_by_name,
+  2,  protobuf_msgs__debug_frame__number_ranges,
+  (ProtobufCMessageInit) protobuf_msgs__debug_frame__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
 static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__point__field_descriptors[2] =
 {
   {
@@ -247,238 +584,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__point__descriptor
   (ProtobufCMessageInit) protobuf_msgs__canvas_object__point__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__color__field_descriptors[4] =
-{
-  {
-    "r",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Color, r),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "g",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Color, g),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "b",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Color, b),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "a",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Color, a),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__canvas_object__color__field_indices_by_name[] = {
-  3,   /* field[3] = a */
-  2,   /* field[2] = b */
-  1,   /* field[1] = g */
-  0,   /* field[0] = r */
-};
-static const ProtobufCIntRange protobuf_msgs__canvas_object__color__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 4 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__color__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CanvasObject.Color",
-  "Color",
-  "ProtobufMsgs__CanvasObject__Color",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__CanvasObject__Color),
-  4,
-  protobuf_msgs__canvas_object__color__field_descriptors,
-  protobuf_msgs__canvas_object__color__field_indices_by_name,
-  1,  protobuf_msgs__canvas_object__color__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__canvas_object__color__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__line__field_descriptors[4] =
-{
-  {
-    "start",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Line, start),
-    &protobuf_msgs__canvas_object__point__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "end",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Line, end),
-    &protobuf_msgs__canvas_object__point__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "width",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Line, width),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "color",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Line, color),
-    &protobuf_msgs__canvas_object__color__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__canvas_object__line__field_indices_by_name[] = {
-  3,   /* field[3] = color */
-  1,   /* field[1] = end */
-  0,   /* field[0] = start */
-  2,   /* field[2] = width */
-};
-static const ProtobufCIntRange protobuf_msgs__canvas_object__line__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 4 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__line__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CanvasObject.Line",
-  "Line",
-  "ProtobufMsgs__CanvasObject__Line",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__CanvasObject__Line),
-  4,
-  protobuf_msgs__canvas_object__line__field_descriptors,
-  protobuf_msgs__canvas_object__line__field_indices_by_name,
-  1,  protobuf_msgs__canvas_object__line__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__canvas_object__line__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__rectangle__field_descriptors[4] =
-{
-  {
-    "topLeft",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Rectangle, topleft),
-    &protobuf_msgs__canvas_object__point__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "bottomRight",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Rectangle, bottomright),
-    &protobuf_msgs__canvas_object__point__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "width",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Rectangle, width),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "color",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Rectangle, color),
-    &protobuf_msgs__canvas_object__color__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__canvas_object__rectangle__field_indices_by_name[] = {
-  1,   /* field[1] = bottomRight */
-  3,   /* field[3] = color */
-  0,   /* field[0] = topLeft */
-  2,   /* field[2] = width */
-};
-static const ProtobufCIntRange protobuf_msgs__canvas_object__rectangle__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 4 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__rectangle__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CanvasObject.Rectangle",
-  "Rectangle",
-  "ProtobufMsgs__CanvasObject__Rectangle",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__CanvasObject__Rectangle),
-  4,
-  protobuf_msgs__canvas_object__rectangle__field_descriptors,
-  protobuf_msgs__canvas_object__rectangle__field_indices_by_name,
-  1,  protobuf_msgs__canvas_object__rectangle__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__canvas_object__rectangle__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__circle__field_descriptors[4] =
+static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__circle__field_descriptors[3] =
 {
   {
     "center",
@@ -516,29 +622,16 @@ static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__circle__fiel
     0,             /* flags */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "color",
-    4,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CanvasObject__Circle, color),
-    &protobuf_msgs__canvas_object__color__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned protobuf_msgs__canvas_object__circle__field_indices_by_name[] = {
   0,   /* field[0] = center */
-  3,   /* field[3] = color */
   1,   /* field[1] = radius */
   2,   /* field[2] = width */
 };
 static const ProtobufCIntRange protobuf_msgs__canvas_object__circle__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 0, 3 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__circle__descriptor =
 {
@@ -548,42 +641,18 @@ const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__circle__descripto
   "ProtobufMsgs__CanvasObject__Circle",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__CanvasObject__Circle),
-  4,
+  3,
   protobuf_msgs__canvas_object__circle__field_descriptors,
   protobuf_msgs__canvas_object__circle__field_indices_by_name,
   1,  protobuf_msgs__canvas_object__circle__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__canvas_object__circle__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__field_descriptors[3] =
+static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__field_descriptors[1] =
 {
   {
-    "line",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProtobufMsgs__CanvasObject, object_case),
-    offsetof(ProtobufMsgs__CanvasObject, line),
-    &protobuf_msgs__canvas_object__line__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "rectangle",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProtobufMsgs__CanvasObject, object_case),
-    offsetof(ProtobufMsgs__CanvasObject, rectangle),
-    &protobuf_msgs__canvas_object__rectangle__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_ONEOF,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
     "circle",
-    3,
+    1,
     PROTOBUF_C_LABEL_NONE,
     PROTOBUF_C_TYPE_MESSAGE,
     offsetof(ProtobufMsgs__CanvasObject, object_case),
@@ -595,14 +664,12 @@ static const ProtobufCFieldDescriptor protobuf_msgs__canvas_object__field_descri
   },
 };
 static const unsigned protobuf_msgs__canvas_object__field_indices_by_name[] = {
-  2,   /* field[2] = circle */
-  0,   /* field[0] = line */
-  1,   /* field[1] = rectangle */
+  0,   /* field[0] = circle */
 };
 static const ProtobufCIntRange protobuf_msgs__canvas_object__number_ranges[1 + 1] =
 {
   { 1, 0 },
-  { 0, 3 }
+  { 0, 1 }
 };
 const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__descriptor =
 {
@@ -612,7 +679,7 @@ const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__descriptor =
   "ProtobufMsgs__CanvasObject",
   "protobuf_msgs",
   sizeof(ProtobufMsgs__CanvasObject),
-  3,
+  1,
   protobuf_msgs__canvas_object__field_descriptors,
   protobuf_msgs__canvas_object__field_indices_by_name,
   1,  protobuf_msgs__canvas_object__number_ranges,
@@ -681,275 +748,6 @@ const ProtobufCMessageDescriptor protobuf_msgs__canvas__descriptor =
   protobuf_msgs__canvas__field_indices_by_name,
   1,  protobuf_msgs__canvas__number_ranges,
   (ProtobufCMessageInit) protobuf_msgs__canvas__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__trajectory__point__field_descriptors[2] =
-{
-  {
-    "x",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory__Point, x),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "y",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_INT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory__Point, y),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__camera_sensor_output__trajectory__point__field_indices_by_name[] = {
-  0,   /* field[0] = x */
-  1,   /* field[1] = y */
-};
-static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__trajectory__point__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__point__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CameraSensorOutput.Trajectory.Point",
-  "Point",
-  "ProtobufMsgs__CameraSensorOutput__Trajectory__Point",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__CameraSensorOutput__Trajectory__Point),
-  2,
-  protobuf_msgs__camera_sensor_output__trajectory__point__field_descriptors,
-  protobuf_msgs__camera_sensor_output__trajectory__point__field_indices_by_name,
-  1,  protobuf_msgs__camera_sensor_output__trajectory__point__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__trajectory__point__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__trajectory__field_descriptors[3] =
-{
-  {
-    "points",
-    1,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_MESSAGE,
-    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory, n_points),
-    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory, points),
-    &protobuf_msgs__camera_sensor_output__trajectory__point__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "width",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory, width),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "height",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_UINT32,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__Trajectory, height),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__camera_sensor_output__trajectory__field_indices_by_name[] = {
-  2,   /* field[2] = height */
-  0,   /* field[0] = points */
-  1,   /* field[1] = width */
-};
-static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__trajectory__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 3 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CameraSensorOutput.Trajectory",
-  "Trajectory",
-  "ProtobufMsgs__CameraSensorOutput__Trajectory",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__CameraSensorOutput__Trajectory),
-  3,
-  protobuf_msgs__camera_sensor_output__trajectory__field_descriptors,
-  protobuf_msgs__camera_sensor_output__trajectory__field_indices_by_name,
-  1,  protobuf_msgs__camera_sensor_output__trajectory__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__trajectory__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__debug_frame__field_descriptors[2] =
-{
-  {
-    "jpeg",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_BYTES,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__DebugFrame, jpeg),
-    NULL,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "canvas",
-    5,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput__DebugFrame, canvas),
-    &protobuf_msgs__canvas__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__camera_sensor_output__debug_frame__field_indices_by_name[] = {
-  1,   /* field[1] = canvas */
-  0,   /* field[0] = jpeg */
-};
-static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__debug_frame__number_ranges[2 + 1] =
-{
-  { 1, 0 },
-  { 5, 1 },
-  { 0, 2 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__debug_frame__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CameraSensorOutput.DebugFrame",
-  "DebugFrame",
-  "ProtobufMsgs__CameraSensorOutput__DebugFrame",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__CameraSensorOutput__DebugFrame),
-  2,
-  protobuf_msgs__camera_sensor_output__debug_frame__field_descriptors,
-  protobuf_msgs__camera_sensor_output__debug_frame__field_indices_by_name,
-  2,  protobuf_msgs__camera_sensor_output__debug_frame__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__debug_frame__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__objects__field_descriptors[1] =
-{
-  {
-    "items",
-    1,
-    PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_ENUM,
-    offsetof(ProtobufMsgs__CameraSensorOutput__Objects, n_items),
-    offsetof(ProtobufMsgs__CameraSensorOutput__Objects, items),
-    &protobuf_msgs__detected_objects__descriptor,
-    NULL,
-    0 | PROTOBUF_C_FIELD_FLAG_PACKED,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__camera_sensor_output__objects__field_indices_by_name[] = {
-  0,   /* field[0] = items */
-};
-static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__objects__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 1 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__objects__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CameraSensorOutput.Objects",
-  "Objects",
-  "ProtobufMsgs__CameraSensorOutput__Objects",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__CameraSensorOutput__Objects),
-  1,
-  protobuf_msgs__camera_sensor_output__objects__field_descriptors,
-  protobuf_msgs__camera_sensor_output__objects__field_indices_by_name,
-  1,  protobuf_msgs__camera_sensor_output__objects__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__objects__init,
-  NULL,NULL,NULL    /* reserved[123] */
-};
-static const ProtobufCFieldDescriptor protobuf_msgs__camera_sensor_output__field_descriptors[3] =
-{
-  {
-    "trajectory",
-    1,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput, trajectory),
-    &protobuf_msgs__camera_sensor_output__trajectory__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "debug_frame",
-    2,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput, debug_frame),
-    &protobuf_msgs__camera_sensor_output__debug_frame__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
-    "objects",
-    3,
-    PROTOBUF_C_LABEL_NONE,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    offsetof(ProtobufMsgs__CameraSensorOutput, objects),
-    &protobuf_msgs__camera_sensor_output__objects__descriptor,
-    NULL,
-    0,             /* flags */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-};
-static const unsigned protobuf_msgs__camera_sensor_output__field_indices_by_name[] = {
-  1,   /* field[1] = debug_frame */
-  2,   /* field[2] = objects */
-  0,   /* field[0] = trajectory */
-};
-static const ProtobufCIntRange protobuf_msgs__camera_sensor_output__number_ranges[1 + 1] =
-{
-  { 1, 0 },
-  { 0, 3 }
-};
-const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__descriptor =
-{
-  PROTOBUF_C__MESSAGE_DESCRIPTOR_MAGIC,
-  "protobuf_msgs.CameraSensorOutput",
-  "CameraSensorOutput",
-  "ProtobufMsgs__CameraSensorOutput",
-  "protobuf_msgs",
-  sizeof(ProtobufMsgs__CameraSensorOutput),
-  3,
-  protobuf_msgs__camera_sensor_output__field_descriptors,
-  protobuf_msgs__camera_sensor_output__field_indices_by_name,
-  1,  protobuf_msgs__camera_sensor_output__number_ranges,
-  (ProtobufCMessageInit) protobuf_msgs__camera_sensor_output__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCEnumValue protobuf_msgs__detected_objects__enum_values_by_number[10] =

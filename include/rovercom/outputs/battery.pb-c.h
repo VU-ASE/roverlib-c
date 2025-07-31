@@ -23,11 +23,23 @@ typedef struct _ProtobufMsgs__BatterySensorOutput ProtobufMsgs__BatterySensorOut
 
 /* --- messages --- */
 
+/*
+ * This is the message format that a battery service can send out. It contains information about the battery's current state.
+ */
 struct  _ProtobufMsgs__BatterySensorOutput
 {
   ProtobufCMessage base;
+  /*
+   * The current voltage of the battery in volts
+   */
   float currentoutputvoltage;
+  /*
+   * The voltage at which the framework will warn the user about low battery
+   */
   float warnvoltage;
+  /*
+   * The voltage at which the framework will shut down the debix to prevent undercharge
+   */
   float killvoltage;
 };
 #define PROTOBUF_MSGS__BATTERY_SENSOR_OUTPUT__INIT \

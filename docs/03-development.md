@@ -27,3 +27,5 @@ Make sure to split up the generated file, put the declarations in `include/booti
 
 **rovercom**:
 copy the generated rovercom package from https://github.com/VU-ASE/rovercom/tree/main/packages/c/gen. You only need `output` and `tuning`. Make sure to put all header files in the `include/rovercom` directory (keep the file structure!) and all c source files in the `src/rovercom` directory (keep the file structure!)
+
+- If compilation fails, look into the /output and /tuning .c files and change `#include "output/...h"` to `#include "rovercom/output/...h"`. You can do a find and replace all for this!

@@ -15,24 +15,20 @@ PROTOBUF_C__BEGIN_DECLS
 #endif
 
 
+typedef struct _ProtobufMsgs__CameraSensorOutput ProtobufMsgs__CameraSensorOutput;
+typedef struct _ProtobufMsgs__Resolution ProtobufMsgs__Resolution;
+typedef struct _ProtobufMsgs__HorizontalScan ProtobufMsgs__HorizontalScan;
+typedef struct _ProtobufMsgs__DebugFrame ProtobufMsgs__DebugFrame;
 typedef struct _ProtobufMsgs__CanvasObject ProtobufMsgs__CanvasObject;
 typedef struct _ProtobufMsgs__CanvasObject__Point ProtobufMsgs__CanvasObject__Point;
-typedef struct _ProtobufMsgs__CanvasObject__Color ProtobufMsgs__CanvasObject__Color;
-typedef struct _ProtobufMsgs__CanvasObject__Line ProtobufMsgs__CanvasObject__Line;
-typedef struct _ProtobufMsgs__CanvasObject__Rectangle ProtobufMsgs__CanvasObject__Rectangle;
 typedef struct _ProtobufMsgs__CanvasObject__Circle ProtobufMsgs__CanvasObject__Circle;
 typedef struct _ProtobufMsgs__Canvas ProtobufMsgs__Canvas;
-typedef struct _ProtobufMsgs__CameraSensorOutput ProtobufMsgs__CameraSensorOutput;
-typedef struct _ProtobufMsgs__CameraSensorOutput__Trajectory ProtobufMsgs__CameraSensorOutput__Trajectory;
-typedef struct _ProtobufMsgs__CameraSensorOutput__Trajectory__Point ProtobufMsgs__CameraSensorOutput__Trajectory__Point;
-typedef struct _ProtobufMsgs__CameraSensorOutput__DebugFrame ProtobufMsgs__CameraSensorOutput__DebugFrame;
-typedef struct _ProtobufMsgs__CameraSensorOutput__Objects ProtobufMsgs__CameraSensorOutput__Objects;
 
 
 /* --- enums --- */
 
 /*
- * Possible Objects the Imaging Module may detect
+ * Possible Objects the Imaging Service may detect
  */
 typedef enum _ProtobufMsgs__DetectedObjects {
   /*
@@ -80,6 +76,95 @@ typedef enum _ProtobufMsgs__DetectedObjects {
 
 /* --- messages --- */
 
+/*
+ * This is the message format that a camera-like service can send out. For example, the official ASE imaging service
+ * uses this output format. This can then be used by (for example) a controller, to determine how to steer, to stay
+ * on the track, or to detect obstacles, intersections, etc.
+ */
+struct  _ProtobufMsgs__CameraSensorOutput
+{
+  ProtobufCMessage base;
+  /*
+   * Basic information, contains everything you need to know to steer and compute the middle of the track
+   */
+  /*
+   * Resolution of the image in pixels
+   */
+  ProtobufMsgs__Resolution *resolution;
+  /*
+   * Horizontal scans of the track, where each scan returns the track edges it finds in the image
+   */
+  size_t n_horizontalscans;
+  ProtobufMsgs__HorizontalScan **horizontalscans;
+  size_t n_detectedobjects;
+  ProtobufMsgs__DetectedObjects *detectedobjects;
+  /*
+   * Additional information that can be used to debug the image processing
+   * if present, it is rendered in roverctl-web
+   */
+  ProtobufMsgs__DebugFrame *debugframe;
+};
+#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__descriptor) \
+    , NULL, 0,NULL, 0,NULL, NULL }
+
+
+struct  _ProtobufMsgs__Resolution
+{
+  ProtobufCMessage base;
+  /*
+   * Width of the image in pixels
+   */
+  uint32_t width;
+  /*
+   * Height of the image in pixels
+   */
+  uint32_t height;
+};
+#define PROTOBUF_MSGS__RESOLUTION__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__resolution__descriptor) \
+    , 0, 0 }
+
+
+struct  _ProtobufMsgs__HorizontalScan
+{
+  ProtobufCMessage base;
+  /*
+   * Leftmost point in the scan in pixels (is left edge of the track)
+   */
+  uint32_t xleft;
+  /*
+   * Rightmost point in the scan in pixels (is right edge of the track)
+   */
+  uint32_t xright;
+  /*
+   * Y coordinate of the scan in pixels
+   */
+  uint32_t y;
+};
+#define PROTOBUF_MSGS__HORIZONTAL_SCAN__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__horizontal_scan__descriptor) \
+    , 0, 0, 0 }
+
+
+struct  _ProtobufMsgs__DebugFrame
+{
+  ProtobufCMessage base;
+  /*
+   * (Compressed) JPEG image of the camera output, useful for debugging
+   * just JPEG bytes, that will be rendered in roverctl-web
+   */
+  ProtobufCBinaryData jpeg;
+  /*
+   * A "canvas" that you can "draw" on, for example by placing points, these are also rendered in roverctl-web
+   */
+  ProtobufMsgs__Canvas *canvas;
+};
+#define PROTOBUF_MSGS__DEBUG_FRAME__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__debug_frame__descriptor) \
+    , {0,NULL}, NULL }
+
+
 struct  _ProtobufMsgs__CanvasObject__Point
 {
   ProtobufCMessage base;
@@ -91,63 +176,21 @@ struct  _ProtobufMsgs__CanvasObject__Point
     , 0, 0 }
 
 
-struct  _ProtobufMsgs__CanvasObject__Color
-{
-  ProtobufCMessage base;
-  uint32_t r;
-  uint32_t g;
-  uint32_t b;
-  uint32_t a;
-};
-#define PROTOBUF_MSGS__CANVAS_OBJECT__COLOR__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__canvas_object__color__descriptor) \
-    , 0, 0, 0, 0 }
-
-
-struct  _ProtobufMsgs__CanvasObject__Line
-{
-  ProtobufCMessage base;
-  ProtobufMsgs__CanvasObject__Point *start;
-  ProtobufMsgs__CanvasObject__Point *end;
-  uint32_t width;
-  ProtobufMsgs__CanvasObject__Color *color;
-};
-#define PROTOBUF_MSGS__CANVAS_OBJECT__LINE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__canvas_object__line__descriptor) \
-    , NULL, NULL, 0, NULL }
-
-
-struct  _ProtobufMsgs__CanvasObject__Rectangle
-{
-  ProtobufCMessage base;
-  ProtobufMsgs__CanvasObject__Point *topleft;
-  ProtobufMsgs__CanvasObject__Point *bottomright;
-  uint32_t width;
-  ProtobufMsgs__CanvasObject__Color *color;
-};
-#define PROTOBUF_MSGS__CANVAS_OBJECT__RECTANGLE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__canvas_object__rectangle__descriptor) \
-    , NULL, NULL, 0, NULL }
-
-
 struct  _ProtobufMsgs__CanvasObject__Circle
 {
   ProtobufCMessage base;
   ProtobufMsgs__CanvasObject__Point *center;
   uint32_t radius;
   uint32_t width;
-  ProtobufMsgs__CanvasObject__Color *color;
 };
 #define PROTOBUF_MSGS__CANVAS_OBJECT__CIRCLE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__canvas_object__circle__descriptor) \
-    , NULL, 0, 0, NULL }
+    , NULL, 0, 0 }
 
 
 typedef enum {
   PROTOBUF_MSGS__CANVAS_OBJECT__OBJECT__NOT_SET = 0,
-  PROTOBUF_MSGS__CANVAS_OBJECT__OBJECT_LINE = 1,
-  PROTOBUF_MSGS__CANVAS_OBJECT__OBJECT_RECTANGLE = 2,
-  PROTOBUF_MSGS__CANVAS_OBJECT__OBJECT_CIRCLE = 3
+  PROTOBUF_MSGS__CANVAS_OBJECT__OBJECT_CIRCLE = 1
     PROTOBUF_C__FORCE_ENUM_TO_BE_INT_SIZE(PROTOBUF_MSGS__CANVAS_OBJECT__OBJECT)
 } ProtobufMsgs__CanvasObject__ObjectCase;
 
@@ -156,8 +199,6 @@ struct  _ProtobufMsgs__CanvasObject
   ProtobufCMessage base;
   ProtobufMsgs__CanvasObject__ObjectCase object_case;
   union {
-    ProtobufMsgs__CanvasObject__Line *line;
-    ProtobufMsgs__CanvasObject__Rectangle *rectangle;
     ProtobufMsgs__CanvasObject__Circle *circle;
   };
 };
@@ -169,6 +210,9 @@ struct  _ProtobufMsgs__CanvasObject
 struct  _ProtobufMsgs__Canvas
 {
   ProtobufCMessage base;
+  /*
+   * The width and height are a legacy feature, they should be the same as the resolution of the camera
+   */
   uint32_t width;
   uint32_t height;
   size_t n_objects;
@@ -179,85 +223,85 @@ struct  _ProtobufMsgs__Canvas
     , 0, 0, 0,NULL }
 
 
-struct  _ProtobufMsgs__CameraSensorOutput__Trajectory__Point
-{
-  ProtobufCMessage base;
-  int32_t x;
-  int32_t y;
-};
-#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__POINT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__trajectory__point__descriptor) \
-    , 0, 0 }
-
-
-/*
- * Defined by the Path Planner
- */
-struct  _ProtobufMsgs__CameraSensorOutput__Trajectory
-{
-  ProtobufCMessage base;
-  size_t n_points;
-  ProtobufMsgs__CameraSensorOutput__Trajectory__Point **points;
-  uint32_t width;
-  uint32_t height;
-};
-#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__TRAJECTORY__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__trajectory__descriptor) \
-    , 0,NULL, 0, 0 }
-
-
-struct  _ProtobufMsgs__CameraSensorOutput__DebugFrame
-{
-  ProtobufCMessage base;
-  ProtobufCBinaryData jpeg;
-  /*
-   * if image livestreaming is disabled, or imaging module wants to draw additional information on the image, it can be done here
-   */
-  ProtobufMsgs__Canvas *canvas;
-};
-#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__DEBUG_FRAME__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__debug_frame__descriptor) \
-    , {0,NULL}, NULL }
-
-
-struct  _ProtobufMsgs__CameraSensorOutput__Objects
-{
-  ProtobufCMessage base;
-  size_t n_items;
-  ProtobufMsgs__DetectedObjects *items;
-};
-#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__OBJECTS__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__objects__descriptor) \
-    , 0,NULL }
-
-
-/*
- * The following sensor outputs are specific to the sensor type, bring your own sensor and add your own output here!
- */
-struct  _ProtobufMsgs__CameraSensorOutput
-{
-  ProtobufCMessage base;
-  ProtobufMsgs__CameraSensorOutput__Trajectory *trajectory;
-  ProtobufMsgs__CameraSensorOutput__DebugFrame *debug_frame;
-  ProtobufMsgs__CameraSensorOutput__Objects *objects;
-};
-#define PROTOBUF_MSGS__CAMERA_SENSOR_OUTPUT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&protobuf_msgs__camera_sensor_output__descriptor) \
-    , NULL, NULL, NULL }
-
-
+/* ProtobufMsgs__CameraSensorOutput methods */
+void   protobuf_msgs__camera_sensor_output__init
+                     (ProtobufMsgs__CameraSensorOutput         *message);
+size_t protobuf_msgs__camera_sensor_output__get_packed_size
+                     (const ProtobufMsgs__CameraSensorOutput   *message);
+size_t protobuf_msgs__camera_sensor_output__pack
+                     (const ProtobufMsgs__CameraSensorOutput   *message,
+                      uint8_t             *out);
+size_t protobuf_msgs__camera_sensor_output__pack_to_buffer
+                     (const ProtobufMsgs__CameraSensorOutput   *message,
+                      ProtobufCBuffer     *buffer);
+ProtobufMsgs__CameraSensorOutput *
+       protobuf_msgs__camera_sensor_output__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   protobuf_msgs__camera_sensor_output__free_unpacked
+                     (ProtobufMsgs__CameraSensorOutput *message,
+                      ProtobufCAllocator *allocator);
+/* ProtobufMsgs__Resolution methods */
+void   protobuf_msgs__resolution__init
+                     (ProtobufMsgs__Resolution         *message);
+size_t protobuf_msgs__resolution__get_packed_size
+                     (const ProtobufMsgs__Resolution   *message);
+size_t protobuf_msgs__resolution__pack
+                     (const ProtobufMsgs__Resolution   *message,
+                      uint8_t             *out);
+size_t protobuf_msgs__resolution__pack_to_buffer
+                     (const ProtobufMsgs__Resolution   *message,
+                      ProtobufCBuffer     *buffer);
+ProtobufMsgs__Resolution *
+       protobuf_msgs__resolution__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   protobuf_msgs__resolution__free_unpacked
+                     (ProtobufMsgs__Resolution *message,
+                      ProtobufCAllocator *allocator);
+/* ProtobufMsgs__HorizontalScan methods */
+void   protobuf_msgs__horizontal_scan__init
+                     (ProtobufMsgs__HorizontalScan         *message);
+size_t protobuf_msgs__horizontal_scan__get_packed_size
+                     (const ProtobufMsgs__HorizontalScan   *message);
+size_t protobuf_msgs__horizontal_scan__pack
+                     (const ProtobufMsgs__HorizontalScan   *message,
+                      uint8_t             *out);
+size_t protobuf_msgs__horizontal_scan__pack_to_buffer
+                     (const ProtobufMsgs__HorizontalScan   *message,
+                      ProtobufCBuffer     *buffer);
+ProtobufMsgs__HorizontalScan *
+       protobuf_msgs__horizontal_scan__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   protobuf_msgs__horizontal_scan__free_unpacked
+                     (ProtobufMsgs__HorizontalScan *message,
+                      ProtobufCAllocator *allocator);
+/* ProtobufMsgs__DebugFrame methods */
+void   protobuf_msgs__debug_frame__init
+                     (ProtobufMsgs__DebugFrame         *message);
+size_t protobuf_msgs__debug_frame__get_packed_size
+                     (const ProtobufMsgs__DebugFrame   *message);
+size_t protobuf_msgs__debug_frame__pack
+                     (const ProtobufMsgs__DebugFrame   *message,
+                      uint8_t             *out);
+size_t protobuf_msgs__debug_frame__pack_to_buffer
+                     (const ProtobufMsgs__DebugFrame   *message,
+                      ProtobufCBuffer     *buffer);
+ProtobufMsgs__DebugFrame *
+       protobuf_msgs__debug_frame__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   protobuf_msgs__debug_frame__free_unpacked
+                     (ProtobufMsgs__DebugFrame *message,
+                      ProtobufCAllocator *allocator);
 /* ProtobufMsgs__CanvasObject__Point methods */
 void   protobuf_msgs__canvas_object__point__init
                      (ProtobufMsgs__CanvasObject__Point         *message);
-/* ProtobufMsgs__CanvasObject__Color methods */
-void   protobuf_msgs__canvas_object__color__init
-                     (ProtobufMsgs__CanvasObject__Color         *message);
-/* ProtobufMsgs__CanvasObject__Line methods */
-void   protobuf_msgs__canvas_object__line__init
-                     (ProtobufMsgs__CanvasObject__Line         *message);
-/* ProtobufMsgs__CanvasObject__Rectangle methods */
-void   protobuf_msgs__canvas_object__rectangle__init
-                     (ProtobufMsgs__CanvasObject__Rectangle         *message);
 /* ProtobufMsgs__CanvasObject__Circle methods */
 void   protobuf_msgs__canvas_object__circle__init
                      (ProtobufMsgs__CanvasObject__Circle         *message);
@@ -299,50 +343,22 @@ ProtobufMsgs__Canvas *
 void   protobuf_msgs__canvas__free_unpacked
                      (ProtobufMsgs__Canvas *message,
                       ProtobufCAllocator *allocator);
-/* ProtobufMsgs__CameraSensorOutput__Trajectory__Point methods */
-void   protobuf_msgs__camera_sensor_output__trajectory__point__init
-                     (ProtobufMsgs__CameraSensorOutput__Trajectory__Point         *message);
-/* ProtobufMsgs__CameraSensorOutput__Trajectory methods */
-void   protobuf_msgs__camera_sensor_output__trajectory__init
-                     (ProtobufMsgs__CameraSensorOutput__Trajectory         *message);
-/* ProtobufMsgs__CameraSensorOutput__DebugFrame methods */
-void   protobuf_msgs__camera_sensor_output__debug_frame__init
-                     (ProtobufMsgs__CameraSensorOutput__DebugFrame         *message);
-/* ProtobufMsgs__CameraSensorOutput__Objects methods */
-void   protobuf_msgs__camera_sensor_output__objects__init
-                     (ProtobufMsgs__CameraSensorOutput__Objects         *message);
-/* ProtobufMsgs__CameraSensorOutput methods */
-void   protobuf_msgs__camera_sensor_output__init
-                     (ProtobufMsgs__CameraSensorOutput         *message);
-size_t protobuf_msgs__camera_sensor_output__get_packed_size
-                     (const ProtobufMsgs__CameraSensorOutput   *message);
-size_t protobuf_msgs__camera_sensor_output__pack
-                     (const ProtobufMsgs__CameraSensorOutput   *message,
-                      uint8_t             *out);
-size_t protobuf_msgs__camera_sensor_output__pack_to_buffer
-                     (const ProtobufMsgs__CameraSensorOutput   *message,
-                      ProtobufCBuffer     *buffer);
-ProtobufMsgs__CameraSensorOutput *
-       protobuf_msgs__camera_sensor_output__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   protobuf_msgs__camera_sensor_output__free_unpacked
-                     (ProtobufMsgs__CameraSensorOutput *message,
-                      ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
+typedef void (*ProtobufMsgs__CameraSensorOutput_Closure)
+                 (const ProtobufMsgs__CameraSensorOutput *message,
+                  void *closure_data);
+typedef void (*ProtobufMsgs__Resolution_Closure)
+                 (const ProtobufMsgs__Resolution *message,
+                  void *closure_data);
+typedef void (*ProtobufMsgs__HorizontalScan_Closure)
+                 (const ProtobufMsgs__HorizontalScan *message,
+                  void *closure_data);
+typedef void (*ProtobufMsgs__DebugFrame_Closure)
+                 (const ProtobufMsgs__DebugFrame *message,
+                  void *closure_data);
 typedef void (*ProtobufMsgs__CanvasObject__Point_Closure)
                  (const ProtobufMsgs__CanvasObject__Point *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__CanvasObject__Color_Closure)
-                 (const ProtobufMsgs__CanvasObject__Color *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__CanvasObject__Line_Closure)
-                 (const ProtobufMsgs__CanvasObject__Line *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__CanvasObject__Rectangle_Closure)
-                 (const ProtobufMsgs__CanvasObject__Rectangle *message,
                   void *closure_data);
 typedef void (*ProtobufMsgs__CanvasObject__Circle_Closure)
                  (const ProtobufMsgs__CanvasObject__Circle *message,
@@ -353,21 +369,6 @@ typedef void (*ProtobufMsgs__CanvasObject_Closure)
 typedef void (*ProtobufMsgs__Canvas_Closure)
                  (const ProtobufMsgs__Canvas *message,
                   void *closure_data);
-typedef void (*ProtobufMsgs__CameraSensorOutput__Trajectory__Point_Closure)
-                 (const ProtobufMsgs__CameraSensorOutput__Trajectory__Point *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__CameraSensorOutput__Trajectory_Closure)
-                 (const ProtobufMsgs__CameraSensorOutput__Trajectory *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__CameraSensorOutput__DebugFrame_Closure)
-                 (const ProtobufMsgs__CameraSensorOutput__DebugFrame *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__CameraSensorOutput__Objects_Closure)
-                 (const ProtobufMsgs__CameraSensorOutput__Objects *message,
-                  void *closure_data);
-typedef void (*ProtobufMsgs__CameraSensorOutput_Closure)
-                 (const ProtobufMsgs__CameraSensorOutput *message,
-                  void *closure_data);
 
 /* --- services --- */
 
@@ -375,18 +376,14 @@ typedef void (*ProtobufMsgs__CameraSensorOutput_Closure)
 /* --- descriptors --- */
 
 extern const ProtobufCEnumDescriptor    protobuf_msgs__detected_objects__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__resolution__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__horizontal_scan__descriptor;
+extern const ProtobufCMessageDescriptor protobuf_msgs__debug_frame__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__point__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__color__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__line__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__rectangle__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas_object__circle__descriptor;
 extern const ProtobufCMessageDescriptor protobuf_msgs__canvas__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__trajectory__point__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__debug_frame__descriptor;
-extern const ProtobufCMessageDescriptor protobuf_msgs__camera_sensor_output__objects__descriptor;
 
 PROTOBUF_C__END_DECLS
 
