@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/VU-ASE/roverlib-c/compare/v1.2.0...v2.0.0) (2025-07-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* update to rovercom v2
+
+### Features
+
+* update to rovercom v2 ([5993d08](https://github.com/VU-ASE/roverlib-c/commit/5993d08be570f4543855063693d05557a640b487))
+
 ## [1.2.0](https://github.com/VU-ASE/roverlib-c/compare/v1.1.0...v1.2.0) (2025-06-20)
 
 
